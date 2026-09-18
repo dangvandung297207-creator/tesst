@@ -89,6 +89,9 @@ public final class ClientVfx {
                     level.addParticle(ParticleTypes.EXPLOSION, x + spread() * 2.0D, y, z + spread() * 2.0D,
                             0.0D, 0.05D, 0.0D);
                 }
+                // Vanilla's flash particle stands in for a real light source: cinematic events light the
+                // area up without a single block update or dynamic light engine hook.
+                level.addParticle(ParticleTypes.FLASH, x, y + 1.0D, z, 0.0D, 0.0D, 0.0D);
                 for (int i = 0; i < count * 2; i++) {
                     level.addParticle(ParticleTypes.CLOUD, x + spread() * 2.5D, y, z + spread() * 2.5D,
                             spread() * 0.4D, 0.08D, spread() * 0.4D);
@@ -160,6 +163,7 @@ public final class ClientVfx {
                     level.addParticle(ParticleTypes.SOUL_FIRE_FLAME, x + spread() * 1.5D, y + spread(),
                             z + spread() * 1.5D, 0.0D, 0.05D, 0.0D);
                 }
+                level.addParticle(ParticleTypes.FLASH, x, y + 2.0D, z, 0.0D, 0.0D, 0.0D);
             }
             default -> {
                 for (int i = 0; i < count; i++) {
