@@ -142,7 +142,9 @@ public final class VanishAbility extends Ability {
     }
 
     private boolean fits(ServerLevel level, ServerPlayer player, Vec3 position) {
-        var box = player.getDimensions(player.getPose()).makeBoundingBox(position);
+        // Move the player's own box to the candidate spot instead of rebuilding it from dimensions,
+        // which keeps the check exactly as strict as the collision the player already has.
+        var box = player.getBoundingBox().move(position.subtract(player.position()));
         return level.noCollision(player, box) && !level.containsAnyLiquid(box);
     }
 }

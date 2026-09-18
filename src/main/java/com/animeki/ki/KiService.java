@@ -4,6 +4,7 @@ import com.animeki.AnimeKi;
 import com.animeki.config.AnimeKiServerConfig;
 import com.animeki.network.AnimeKiNetwork;
 import com.animeki.registry.ModAttachments;
+import com.animeki.registry.ModSounds;
 import com.animeki.transformation.TransformationService;
 import com.animeki.util.MathUtil;
 import com.animeki.vfx.VfxDispatcher;
@@ -70,6 +71,11 @@ public final class KiService {
             ki.add(KiMath.chargePerTick(player), player);
         }
 
+        if (ki.chargeTicks() % 20 == 0) {
+            // Low volume loop substitute: the charge sound layered under the aura ticks.
+            player.level().playSound(null, player.getX(), player.getY(), player.getZ(), ModSounds.KI_CHARGE_LOOP.get(),
+                    net.minecraft.sounds.SoundSource.PLAYERS, 0.35F, 1.0F);
+        }
         if (ki.chargeTicks() % CHARGE_VFX_INTERVAL == 0) {
             VfxDispatcher.playOnPlayer(player, VfxEvent.KI_CHARGE_TICK, Vec3.ZERO,
                     0.6F + (float) ki.ratio(player));
@@ -101,6 +107,11 @@ public final class KiService {
         }
         TransformationService.get(player);
         ki.setCharging(true);
+        // Wind up sound + a first aura pulse so the charge reads instantly, even before the aura tick.
+        player.level().playSound(null, player.getX(), player.getY(), player.getZ(), ModSounds.KI_CHARGE.get(),
+                net.minecraft.sounds.SoundSource.PLAYERS, 1.0F, 1.0F);
+        VfxDispatcher.playOnPlayer(player, VfxEvent.AURA_BURST, Vec3.ZERO, 0.8F);
+        VfxDispatcher.camera(player, com.animeki.vfx.CameraEffectType.ZOOM, 0.06F, 30);
         AnimeKiNetwork.syncPlayerState(player);
         AnimeKiNetwork.syncVisualState(player);
         return true;
@@ -112,6 +123,10 @@ public final class KiService {
             return;
         }
         ki.setCharging(false);
+        // Releasing the charge lets the gathered energy escape instead of simply stopping.
+        player.level().playSound(null, player.getX(), player.getY(), player.getZ(), ModSounds.KI_BLAST_IMPACT.get(),
+                net.minecraft.sounds.SoundSource.PLAYERS, 0.7F, 1.5F);
+        VfxDispatcher.playOnPlayer(player, VfxEvent.KI_BURNOUT, Vec3.ZERO, 0.5F);
         AnimeKiNetwork.syncPlayerState(player);
         AnimeKiNetwork.syncVisualState(player);
     }
