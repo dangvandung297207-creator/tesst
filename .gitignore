@@ -1,0 +1,25 @@
+# Gradle / build outputs
+build/
+out/
+.gradle/
+run/
+logs/
+crash-reports/
+
+# IDE
+.idea/
+*.iml
+*.ipr
+*.iws
+.vscode/
+.classpath
+.project
+.settings/
+bin/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# MDG / local dev
+src/generated/resources/.cache/
