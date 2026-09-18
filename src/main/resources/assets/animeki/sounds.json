@@ -1,0 +1,244 @@
+{
+  "ki_charge": {
+    "subtitle": "subtitles.animeki.ki_charge",
+    "sounds": [
+      {
+        "name": "animeki:ki_charge"
+      },
+      {
+        "name": "minecraft:random/orb"
+      }
+    ]
+  },
+  "ki_charge_loop": {
+    "subtitle": "subtitles.animeki.ki_charge_loop",
+    "sounds": [
+      {
+        "name": "animeki:ki_charge_loop"
+      },
+      {
+        "name": "minecraft:block/beacon/ambient"
+      }
+    ]
+  },
+  "ki_blast_fire": {
+    "subtitle": "subtitles.animeki.ki_blast_fire",
+    "sounds": [
+      {
+        "name": "animeki:ki_blast_fire"
+      },
+      {
+        "name": "minecraft:entity/blaze/shoot"
+      }
+    ]
+  },
+  "ki_blast_impact": {
+    "subtitle": "subtitles.animeki.ki_blast_impact",
+    "sounds": [
+      {
+        "name": "animeki:ki_blast_impact"
+      },
+      {
+        "name": "minecraft:entity/generic/explode"
+      }
+    ]
+  },
+  "beam_charge": {
+    "subtitle": "subtitles.animeki.beam_charge",
+    "sounds": [
+      {
+        "name": "animeki:beam_charge"
+      },
+      {
+        "name": "minecraft:block/beacon/activate"
+      }
+    ]
+  },
+  "beam_fire": {
+    "subtitle": "subtitles.animeki.beam_fire",
+    "sounds": [
+      {
+        "name": "animeki:beam_fire"
+      },
+      {
+        "name": "minecraft:entity/enderdragon/growl"
+      }
+    ]
+  },
+  "beam_impact": {
+    "subtitle": "subtitles.animeki.beam_impact",
+    "sounds": [
+      {
+        "name": "animeki:beam_impact"
+      },
+      {
+        "name": "minecraft:entity/lightning_bolt/impact"
+      }
+    ]
+  },
+  "clash_loop": {
+    "subtitle": "subtitles.animeki.clash_loop",
+    "sounds": [
+      {
+        "name": "animeki:clash_loop"
+      },
+      {
+        "name": "minecraft:block/beacon/power"
+      }
+    ]
+  },
+  "clash_burst": {
+    "subtitle": "subtitles.animeki.clash_burst",
+    "sounds": [
+      {
+        "name": "animeki:clash_burst"
+      },
+      {
+        "name": "minecraft:entity/generic/explode"
+      }
+    ]
+  },
+  "dash": {
+    "subtitle": "subtitles.animeki.dash",
+    "sounds": [
+      {
+        "name": "animeki:dash"
+      },
+      {
+        "name": "minecraft:entity/player/attack_sweep"
+      }
+    ]
+  },
+  "sonic_boom": {
+    "subtitle": "subtitles.animeki.sonic_boom",
+    "sounds": [
+      {
+        "name": "animeki:sonic_boom"
+      },
+      {
+        "name": "minecraft:entity/warden/sonic_boom"
+      }
+    ]
+  },
+  "vanish": {
+    "subtitle": "subtitles.animeki.vanish",
+    "sounds": [
+      {
+        "name": "animeki:vanish"
+      },
+      {
+        "name": "minecraft:entity/enderman/teleport"
+      }
+    ]
+  },
+  "transform_buildup": {
+    "subtitle": "subtitles.animeki.transform_buildup",
+    "sounds": [
+      {
+        "name": "animeki:transform_buildup"
+      },
+      {
+        "name": "minecraft:entity/wither/spawn"
+      }
+    ]
+  },
+  "transform_burst": {
+    "subtitle": "subtitles.animeki.transform_burst",
+    "sounds": [
+      {
+        "name": "animeki:transform_burst"
+      },
+      {
+        "name": "minecraft:entity/lightning_bolt/thunder"
+      }
+    ]
+  },
+  "ultimate_charge": {
+    "subtitle": "subtitles.animeki.ultimate_charge",
+    "sounds": [
+      {
+        "name": "animeki:ultimate_charge"
+      },
+      {
+        "name": "minecraft:entity/warden/charge"
+      }
+    ]
+  },
+  "ultimate_impact": {
+    "subtitle": "subtitles.animeki.ultimate_impact",
+    "sounds": [
+      {
+        "name": "animeki:ultimate_impact"
+      },
+      {
+        "name": "minecraft:entity/generic/explode"
+      }
+    ]
+  },
+  "ground_slam": {
+    "subtitle": "subtitles.animeki.ground_slam",
+    "sounds": [
+      {
+        "name": "animeki:ground_slam"
+      },
+      {
+        "name": "minecraft:entity/iron_golem/attack_impact"
+      }
+    ]
+  },
+  "melee_light": {
+    "subtitle": "subtitles.animeki.melee_light",
+    "sounds": [
+      {
+        "name": "animeki:melee_light"
+      },
+      {
+        "name": "minecraft:entity/player/attack_strong"
+      }
+    ]
+  },
+  "melee_heavy": {
+    "subtitle": "subtitles.animeki.melee_heavy",
+    "sounds": [
+      {
+        "name": "animeki:melee_heavy"
+      },
+      {
+        "name": "minecraft:entity/ravager/attack"
+      }
+    ]
+  },
+  "flight_loop": {
+    "subtitle": "subtitles.animeki.flight_loop",
+    "sounds": [
+      {
+        "name": "animeki:flight_loop"
+      },
+      {
+        "name": "minecraft:item/elytra/elytra_loop"
+      }
+    ]
+  },
+  "boss_roar": {
+    "subtitle": "subtitles.animeki.boss_roar",
+    "sounds": [
+      {
+        "name": "animeki:boss_roar"
+      },
+      {
+        "name": "minecraft:entity/enderdragon/growl"
+      }
+    ]
+  },
+  "boss_phase": {
+    "subtitle": "subtitles.animeki.boss_phase",
+    "sounds": [
+      {
+        "name": "animeki:boss_phase"
+      },
+      {
+        "name": "minecraft:entity/wither/spawn"
+      }
+    ]
+  }
+}

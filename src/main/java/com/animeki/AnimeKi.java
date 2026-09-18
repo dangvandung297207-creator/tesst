@@ -16,7 +16,9 @@ import net.minecraft.resources.ResourceLocation;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.ModContainer;
 import net.neoforged.fml.common.Mod;
+import net.neoforged.api.distmarker.Dist;
 import net.neoforged.fml.config.ModConfig;
+import net.neoforged.fml.loading.FMLEnvironment;
 import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.neoforged.neoforge.common.NeoForge;
 import org.slf4j.Logger;
@@ -42,6 +44,12 @@ public final class AnimeKi {
         AnimeKiNetwork.register(modBus);
 
         container.registerConfig(ModConfig.Type.SERVER, AnimeKiServerConfig.SPEC);
+
+        // Client only setup (keybinds, renderers, HUD). Guarded so a dedicated server never touches
+        // a single rendering class.
+        if (FMLEnvironment.dist == Dist.CLIENT) {
+            com.animeki.client.AnimeKiClient.init(modBus, container);
+        }
 
         modBus.addListener(this::onCommonSetup);
 

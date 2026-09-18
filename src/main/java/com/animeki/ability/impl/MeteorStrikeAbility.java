@@ -51,7 +51,7 @@ public final class MeteorStrikeAbility extends Ability {
     public MeteorStrikeAbility() {
         super(ID, AbilityStats.builder()
                 .kiCost(AnimeKiServerConfig.ABILITIES.meteor.kiCost.get())
-                .cooldownTicks(AnimeKiServerConfig.ABILITIES.meteor.cooldownTicks.get())
+                .cooldown(AnimeKiServerConfig.ABILITIES.meteor.cooldownTicks.get())
                 .chargeTicks(AnimeKiServerConfig.ABILITIES.meteor.chargeTicks.get())
                 .range(AnimeKiServerConfig.ABILITIES.meteor.radius.get())
                 .damage(AnimeKiServerConfig.ABILITIES.meteor.damage.get())
@@ -131,7 +131,9 @@ public final class MeteorStrikeAbility extends Ability {
         level.playSound(null, player.getX(), player.getY(), player.getZ(), ModSounds.BEAM_FIRE.get(),
                 SoundSource.PLAYERS, 2.0F, 0.8F);
         VfxDispatcher.play(level, VfxEvent.AURA_BURST, player.position(), null, 2.4F, 0xFFFFE9B0);
-        VfxDispatcher.play(level, VfxEvent.TARGET_MARKER, target, null, (float) config.radius.get(), 0xFFFFD166);
+        // The marker stays up for the whole descent so everyone can see where it will land.
+        VfxDispatcher.playTimed(level, VfxEvent.TARGET_MARKER, target, null, (float) config.radius.get(), 0xFFFFD166,
+                200, VfxDispatcher.CINEMATIC_RADIUS);
         VfxDispatcher.cameraNear(level, player.position(), 64.0D, CameraEffectType.SHAKE, 1.2F, 20, player.getId());
     }
 

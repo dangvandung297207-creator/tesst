@@ -43,7 +43,7 @@ public final class DashStrikeAbility extends Ability {
     public DashStrikeAbility() {
         super(ID, AbilityStats.builder()
                 .kiCost(AnimeKiServerConfig.ABILITIES.dashStrike.kiCost.get())
-                .cooldownTicks(AnimeKiServerConfig.ABILITIES.dashStrike.cooldownTicks.get())
+                .cooldown(AnimeKiServerConfig.ABILITIES.dashStrike.cooldownTicks.get())
                 .chargeTicks(0)
                 .range(AnimeKiServerConfig.ABILITIES.dashStrike.speed.get() * DASH_TICKS)
                 .damage(AnimeKiServerConfig.ABILITIES.dashStrike.damage.get())

@@ -38,7 +38,7 @@ public final class VanishAbility extends Ability {
     public VanishAbility() {
         super(ID, AbilityStats.builder()
                 .kiCost(AnimeKiServerConfig.VANISH.kiCost.get())
-                .cooldownTicks(AnimeKiServerConfig.VANISH.cooldownTicks.get())
+                .cooldown(AnimeKiServerConfig.VANISH.cooldownTicks.get())
                 .chargeTicks(0)
                 .range(AnimeKiServerConfig.VANISH.range.get())
                 .damage(0.0D)

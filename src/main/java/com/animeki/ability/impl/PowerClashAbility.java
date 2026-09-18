@@ -35,7 +35,7 @@ public final class PowerClashAbility extends Ability {
     public PowerClashAbility() {
         super(ID, AbilityStats.builder()
                 .kiCost(0.0D)
-                .cooldownTicks(AnimeKiServerConfig.ABILITIES.beam.cooldownTicks.get())
+                .cooldown(AnimeKiServerConfig.ABILITIES.beam.cooldownTicks.get())
                 .chargeTicks(0)
                 .range(AnimeKiServerConfig.ABILITIES.clash.burstRadius.get() * 6.0D)
                 .damage(AnimeKiServerConfig.ABILITIES.clash.burstDamage.get())

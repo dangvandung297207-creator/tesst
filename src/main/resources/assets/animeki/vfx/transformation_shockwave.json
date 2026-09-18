@@ -1,0 +1,12 @@
+{
+  "event": "TRANSFORMATION_SHOCKWAVE",
+  "shape": "shockwave",
+  "color": "0xFFFFFFFF",
+  "duration_ticks": 30,
+  "camera_shake": 1.6,
+  "particles": "cinematic",
+  "camera": "cinematic",
+  "meshes": [],
+  "sounds": [],
+  "note": "Reference definition. The built-in renderer uses the same values from VfxEvent; resource packs may override them, including with Blender exported meshes listed in 'meshes'."
+}

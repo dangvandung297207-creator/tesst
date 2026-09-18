@@ -38,7 +38,7 @@ public final class EnergyBeamAbility extends Ability {
     public EnergyBeamAbility() {
         super(ID, AbilityStats.builder()
                 .kiCost(0.0D)
-                .cooldownTicks(AnimeKiServerConfig.ABILITIES.beam.cooldownTicks.get())
+                .cooldown(AnimeKiServerConfig.ABILITIES.beam.cooldownTicks.get())
                 .chargeTicks(AnimeKiServerConfig.ABILITIES.beam.chargeTicks.get())
                 .range(AnimeKiServerConfig.ABILITIES.beam.range.get())
                 .damage(AnimeKiServerConfig.ABILITIES.beam.damagePerTick.get())

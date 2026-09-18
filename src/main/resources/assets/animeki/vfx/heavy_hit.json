@@ -1,0 +1,12 @@
+{
+  "event": "HEAVY_HIT",
+  "shape": "directional_burst",
+  "color": "0xFFFFB347",
+  "duration_ticks": 9,
+  "camera_shake": 0.85,
+  "particles": "medium",
+  "camera": "medium",
+  "meshes": [],
+  "sounds": [],
+  "note": "Reference definition. The built-in renderer uses the same values from VfxEvent; resource packs may override them, including with Blender exported meshes listed in 'meshes'."
+}

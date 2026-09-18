@@ -43,6 +43,8 @@ public final class CommonGameplayEvents {
     /** HUD snapshots are only sent when a player is actually doing something. */
     private static final int ACTIVE_SYNC_INTERVAL = 4;
     private static final int IDLE_SYNC_INTERVAL = 40;
+    private static final int VISUAL_SYNC_INTERVAL = 10;
+    private static final int IDLE_VISUAL_SYNC_INTERVAL = 60;
 
     private static int tickCounter;
 
@@ -71,6 +73,19 @@ public final class CommonGameplayEvents {
         if (shouldSync(player)) {
             AnimeKiNetwork.syncPlayerState(player);
         }
+        // Appearance is broadcast much less often: other clients only need the aura/form/flight state
+        // and they interpolate everything else themselves.
+        if (tickCounter % (hasActiveVisual(player) ? VISUAL_SYNC_INTERVAL : IDLE_VISUAL_SYNC_INTERVAL) == 0) {
+            AnimeKiNetwork.syncVisualState(player);
+        }
+    }
+
+    /** Whether this player currently has anything worth showing to other clients. */
+    private static boolean hasActiveVisual(ServerPlayer player) {
+        return ModAttachments.transformation(player).isActive()
+                || ModAttachments.ki(player).isCharging()
+                || ModAttachments.flight(player).isActive()
+                || ModAttachments.combat(player).step() > 0;
     }
 
     private static boolean shouldSync(ServerPlayer player) {
@@ -154,6 +169,12 @@ public final class CommonGameplayEvents {
         if (event.getEntity() instanceof ServerPlayer player) {
             // Any attack ends a Ki charge, which is what keeps charging a commitment.
             KiService.onAttack(player);
+            if (AnimeKiServerConfig.COMBAT.replaceVanillaAttack.get()) {
+                // The mod runs its own hit detection, so the vanilla swing must not deal damage on
+                // top of it. Sneaking asks for the heavy variant of the current combo step.
+                CombatService.attack(player, player.isShiftKeyDown());
+                event.setCanceled(true);
+            }
         }
     }
 

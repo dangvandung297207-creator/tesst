@@ -38,6 +38,20 @@ public final class VfxDispatcher {
         AnimeKiNetwork.sendToNear(level, position, radius, payload);
     }
 
+    /**
+     * Like {@link #play} but with an explicit client side lifetime.
+     *
+     * <p>Used by long running markers (a marked ultimate target area stays visible until the sphere
+     * lands) where the default "camera shake duration" is not the right display time.</p>
+     */
+    public static void playTimed(ServerLevel level, VfxEvent event, Vec3 position, @Nullable Vec3 direction,
+                                 float scale, int color, int displayTicks, double radius) {
+        Vec3 dir = direction == null ? Vec3.ZERO : direction.normalize();
+        Payloads.Vfx payload = new Payloads.Vfx((byte) event.ordinal(), position.x, position.y, position.z,
+                (float) dir.x, (float) dir.y, (float) dir.z, scale, color, displayTicks, -1);
+        AnimeKiNetwork.sendToNear(level, position, radius, payload);
+    }
+
     /** Sends an effect to everyone tracking the entity (used for player attached effects). */
     public static void playTracking(Entity source, VfxEvent event, Vec3 position, @Nullable Vec3 direction,
                                     float scale, int color) {

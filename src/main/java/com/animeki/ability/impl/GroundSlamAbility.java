@@ -38,7 +38,7 @@ public final class GroundSlamAbility extends Ability {
     public GroundSlamAbility() {
         super(ID, AbilityStats.builder()
                 .kiCost(AnimeKiServerConfig.ABILITIES.groundSlam.kiCost.get())
-                .cooldownTicks(AnimeKiServerConfig.ABILITIES.groundSlam.cooldownTicks.get())
+                .cooldown(AnimeKiServerConfig.ABILITIES.groundSlam.cooldownTicks.get())
                 .chargeTicks(0)
                 .range(AnimeKiServerConfig.ABILITIES.groundSlam.radius.get())
                 .damage(AnimeKiServerConfig.ABILITIES.groundSlam.damage.get())

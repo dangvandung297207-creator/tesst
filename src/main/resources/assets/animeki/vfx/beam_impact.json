@@ -1,0 +1,12 @@
+{
+  "event": "BEAM_IMPACT",
+  "shape": "directional_burst",
+  "color": "0xFFD6F0FF",
+  "duration_ticks": 10,
+  "camera_shake": 0.7,
+  "particles": "medium",
+  "camera": "medium",
+  "meshes": [],
+  "sounds": [],
+  "note": "Reference definition. The built-in renderer uses the same values from VfxEvent; resource packs may override them, including with Blender exported meshes listed in 'meshes'."
+}

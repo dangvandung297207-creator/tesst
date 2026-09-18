@@ -1,0 +1,12 @@
+{
+  "event": "ULTIMATE_IMPACT",
+  "shape": "shockwave",
+  "color": "0xFFFFE9B0",
+  "duration_ticks": 46,
+  "camera_shake": 2.4,
+  "particles": "cinematic",
+  "camera": "cinematic",
+  "meshes": [],
+  "sounds": [],
+  "note": "Reference definition. The built-in renderer uses the same values from VfxEvent; resource packs may override them, including with Blender exported meshes listed in 'meshes'."
+}

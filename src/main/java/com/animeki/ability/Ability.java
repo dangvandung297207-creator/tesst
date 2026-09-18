@@ -26,6 +26,12 @@ public abstract class Ability {
         return stats;
     }
 
+    /** Icon used by the HUD and by resource packs that restyle the ability wheel. */
+    public net.minecraft.resources.ResourceLocation icon() {
+        String path = id().contains(":") ? id().substring(id().indexOf(':') + 1) : id();
+        return com.animeki.AnimeKi.id("textures/gui/ability/" + path + ".png");
+    }
+
     /** Optional animation id resolved by the client (extensible to Blender exported clips). */
     public String animationId() {
         return "";

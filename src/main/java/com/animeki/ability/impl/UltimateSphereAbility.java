@@ -27,7 +27,7 @@ public final class UltimateSphereAbility extends Ability {
     public UltimateSphereAbility() {
         super(ID, AbilityStats.builder()
                 .kiCost(AnimeKiServerConfig.ABILITIES.sphere.kiCost.get())
-                .cooldownTicks(AnimeKiServerConfig.ABILITIES.sphere.cooldownTicks.get())
+                .cooldown(AnimeKiServerConfig.ABILITIES.sphere.cooldownTicks.get())
                 .chargeTicks(AnimeKiServerConfig.ABILITIES.sphere.chargeTicks.get())
                 .range(AnimeKiServerConfig.ABILITIES.sphere.explosionRadius.get())
                 .damage(AnimeKiServerConfig.ABILITIES.sphere.damage.get())

@@ -124,4 +124,17 @@ public enum AttackKind {
         }
         return values[ordinal];
     }
+
+    /**
+     * Optional variant used by the network layer: a negative ordinal means "no hint, let the server
+     * pick the next step of the combo chain".
+     */
+    @javax.annotation.Nullable
+    public static AttackKind byOrdinalOrNull(int ordinal) {
+        AttackKind[] values = values();
+        if (ordinal < 0 || ordinal >= values.length) {
+            return null;
+        }
+        return values[ordinal];
+    }
 }

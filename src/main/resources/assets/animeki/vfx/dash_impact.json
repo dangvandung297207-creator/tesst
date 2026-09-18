@@ -1,0 +1,12 @@
+{
+  "event": "DASH_IMPACT",
+  "shape": "ground_burst",
+  "color": "0xFF9BE7FF",
+  "duration_ticks": 7,
+  "camera_shake": 0.55,
+  "particles": "low",
+  "camera": "medium",
+  "meshes": [],
+  "sounds": [],
+  "note": "Reference definition. The built-in renderer uses the same values from VfxEvent; resource packs may override them, including with Blender exported meshes listed in 'meshes'."
+}

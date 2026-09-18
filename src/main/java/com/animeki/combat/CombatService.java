@@ -39,8 +39,14 @@ public final class CombatService {
 
     // ------------------------------------------------------------------ input
 
-    public static void handleInput(ServerPlayer player, AttackKind requested) {
-        attack(player, requested);
+    /**
+     * Client asked for a strike.
+     *
+     * <p>{@code requested} is only a <em>hint</em>: the server validates the timing window, the Ki
+     * cost and the cooldown in {@link #attack}, and any illegal request is simply refused.</p>
+     */
+    public static void handleInput(ServerPlayer player, AttackKind requested, boolean heavyModifier) {
+        attack(player, requested, heavyModifier);
     }
 
     /** Runs one strike of the combo chain. */

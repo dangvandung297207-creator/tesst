@@ -46,7 +46,8 @@ public final class ServerPayloadHandler {
         if (!(context.player() instanceof ServerPlayer player) || invalid(player)) {
             return;
         }
-        CombatService.handleInput(player, payload.kind(), payload.heavy());
+        // A negative kind means "decide for me": the server then walks the combo chain itself.
+        CombatService.handleInput(player, AttackKind.byOrdinalOrNull(payload.kind()), payload.heavy());
     }
 
     public static void handleStateRequest(Payloads.StateRequest payload, IPayloadContext context) {

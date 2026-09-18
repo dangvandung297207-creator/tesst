@@ -71,4 +71,15 @@ public final class AbilityRegistry {
         bootstrap();
         return ABILITIES.values();
     }
+
+    /**
+     * Abilities in registration order.
+     *
+     * <p>The cooldown snapshot the server sends follows exactly this order, which is how the client
+     * HUD can label its cooldown pips without extra packets.</p>
+     */
+    public static java.util.List<Ability> ordered() {
+        bootstrap();
+        return new java.util.ArrayList<>(ABILITIES.values());
+    }
 }

@@ -72,6 +72,21 @@ HELPER_CLASSES = {
     "AnimeKiNetwork": "network/AnimeKiNetwork.java",
     "ModDamageTypes": "registry/ModDamageTypes.java",
     "ModSounds": "registry/ModSounds.java",
+    # Client side helpers: same check, so a renamed HUD/render helper is caught without compiling.
+    "ClientState": "client/ClientState.java",
+    "CameraManager": "client/camera/CameraManager.java",
+    "ClientVfx": "client/vfx/ClientVfx.java",
+    "ClientInput": "client/input/ClientInput.java",
+    "KeyBindings": "client/KeyBindings.java",
+    "ClientPacketHandler": "client/net/ClientPacketHandler.java",
+    "KiHud": "client/hud/KiHud.java",
+    "RenderGeometry": "client/render/RenderGeometry.java",
+    "GlowRenderType": "client/render/GlowRenderType.java",
+    "AuraRenderer": "client/render/AuraRenderer.java",
+    "BeamRenderer": "client/render/BeamRenderer.java",
+    "ImpactRenderer": "client/render/ImpactRenderer.java",
+    "WorldVfxRenderer": "client/render/WorldVfxRenderer.java",
+    "AnimeKiClient": "client/AnimeKiClient.java",
 }
 
 
@@ -240,6 +255,154 @@ def main() -> int:
                 continue
             if not has_method(cls, method):
                 problems.append(f"METHOD {rel}: {variable}.{method}() not found on {cls}")
+
+    # 6. argument counts for our own constructors and methods
+    def split_args(text):
+        text = re.sub(r"<[^<>()]*>", "", text)
+        args, depth, current = [], 0, []
+        for char in text:
+            if char in "([{":
+                depth += 1
+            elif char in ")]}":
+                depth -= 1
+            if char == "," and depth == 0:
+                args.append("".join(current).strip())
+                current = []
+            else:
+                current.append(char)
+        tail = "".join(current).strip()
+        if tail:
+            args.append(tail)
+        return args
+
+    def arity(params):
+        params = params.strip()
+        if not params:
+            return 0
+        return len(split_args(params))
+
+    constructor_arities, method_arities = {}, {}
+    for rel, src in files.items():
+        clean = COMMENT_RE.sub("", src)
+        simple = os.path.basename(rel)[:-5]
+        arities = set()
+        for match in re.finditer(r"\b" + re.escape(simple) + r"\s*\(([^()]*(?:\([^()]*\)[^()]*)*)\)\s*\{", clean):
+            arities.add(arity(match.group(1)))
+        constructor_arities[simple] = arities
+        methods = {}
+        for match in re.finditer(r"\b([A-Za-z_]\w*)\s*\(([^()]*(?:\([^()]*\)[^()]*)*)\)\s*(?:\{|throws|;)", clean):
+            name = match.group(1)
+            params = match.group(2)
+            if name in ("if", "for", "while", "switch", "catch", "return", "new", "synchronized"):
+                continue
+            methods.setdefault(name, set()).add(("varargs" if "..." in params else arity(params)))
+        for record in re.finditer(r"\brecord\s+\w+\s*\(([^)]*)\)", clean):
+            for component in split_args(record.group(1)):
+                parts = component.strip().split()
+                if len(parts) >= 2:
+                    methods.setdefault(parts[-1].split("[")[0], set()).add(0)
+        method_arities[simple] = methods
+
+    def arity_ok(kind, candidates, name, count):
+        for (rel_key, simple) in candidates:
+            if kind == "ctor":
+                declared = constructor_arities.get(simple, set())
+            else:
+                declared = method_arities.get(simple, {}).get(name, set())
+            if "varargs" in declared:
+                return True
+            if count in {value for value in declared if value != "varargs"}:
+                return True
+        return False
+
+    def count_call_args(text, open_index):
+        depth, index = 1, open_index + 1
+        while index < len(text) and depth > 0:
+            if text[index] == "(":
+                depth += 1
+            elif text[index] == ")":
+                depth -= 1
+            index += 1
+        return arity(text[open_index + 1:index - 1])
+
+    def candidates_for(name):
+        return [(rel, os.path.basename(rel)[:-5]) for rel in files
+                if os.path.basename(rel)[:-5] == name]
+
+    # 6a. constructors of our own classes
+    for rel, src in files.items():
+        clean = COMMENT_RE.sub("", src)
+        for match in re.finditer(r"\bnew\s+([A-Z]\w*)\s*\(", clean):
+            simple = match.group(1)
+            candidates = candidates_for(simple)
+            if not candidates:
+                continue
+            if re.search(r"\b(?:class|record|enum)\s+" + simple + r"\b", clean):
+                continue  # a nested class in the same file handles this constructor
+            count = count_call_args(clean, match.end() - 1)
+            if not arity_ok("ctor", candidates, simple, count):
+                declared = sorted(
+                    {value for (_, key) in candidates
+                     for value in constructor_arities.get(key, set()) if value != "varargs"})
+                problems.append(f"ARGS {rel}: new {simple}(...) called with {count} args, declared {declared}")
+
+    # 6b. static calls on our own classes
+    static_names = {os.path.basename(rel)[:-5] for rel in files}
+    for rel, src in files.items():
+        clean = COMMENT_RE.sub("", src)
+        for match in re.finditer(r"\b([A-Z]\w*)\.([a-z]\w*)\s*\(", clean):
+            simple, name = match.group(1), match.group(2)
+            if simple not in static_names:
+                continue
+            candidates = candidates_for(simple)
+            declared_all = method_arities.get(simple, {}).get(name)
+            if not declared_all:
+                continue
+            count = count_call_args(clean, match.end() - 1)
+            if not arity_ok("method", candidates, name, count):
+                problems.append(f"ARGS {rel}: {simple}.{name}(...) called with {count} args, declared "
+                                f"{sorted(value for value in declared_all if value != 'varargs')}")
+
+    # 6c. instance calls on tracked variables
+    for rel, src in files.items():
+        clean = COMMENT_RE.sub("", src)
+        variables = {}
+        for pattern in (
+                r"\b(?:final\s+)?([A-Z]\w*)(?:<[^;=(){}]*>)?\s+([a-z]\w*)\s*[=;,)]",
+                r"\binstanceof\s+([A-Z]\w*)\s+([a-z]\w*)",
+                r"\bfor\s*\(\s*(?:final\s+)?([A-Z]\w*)(?:<[^>]*>)?\s+([a-z]\w*)\s*:",
+                r"\bvar\s+([a-z]\w*)\s*=\s*new\s+([A-Z]\w*)",
+        ):
+            for match in re.finditer(pattern, clean):
+                if pattern.startswith("\\bvar"):
+                    variables.setdefault(match.group(1), match.group(2))
+                else:
+                    variables.setdefault(match.group(2), match.group(1))
+        for match in re.finditer(r"\bvar\s+([a-z]\w*)\s*=\s*([A-Z]\w*)\.([a-z]\w*)\s*\(", clean):
+            source_rel = None
+            for rel_key, simple in candidates_for(match.group(2)):
+                source_rel = rel_key
+                break
+            if source_rel is None:
+                continue
+            declared = re.search(r"([\w<>\[\],\.\?]+)\s+" + re.escape(match.group(3)) + r"\s*\(",
+                                 files[source_rel])
+            if declared:
+                candidate = re.sub(r"<.*", "", declared.group(1)).strip().split(".")[-1].strip()
+                if candidate in static_names:
+                    variables[match.group(1)] = candidate
+        for match in re.finditer(r"\b([a-z]\w*)\.([a-z]\w*)\s*\(", clean):
+            variable, name = match.group(1), match.group(2)
+            cls = variables.get(variable)
+            if not cls or cls not in method_arities:
+                continue
+            declared_all = method_arities[cls].get(name)
+            if not declared_all:
+                continue
+            count = count_call_args(clean, match.end() - 1)
+            if not arity_ok("method", [(rel, cls)], name, count):
+                problems.append(f"ARGS {rel}: {variable}.{name}(...) called with {count} args, declared "
+                                f"{sorted(value for value in declared_all if value != 'varargs')}")
 
     print(f"audited {len(files)} java files in {root}")
     if problems:

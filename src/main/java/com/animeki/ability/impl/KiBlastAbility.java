@@ -26,7 +26,7 @@ public final class KiBlastAbility extends Ability {
     public KiBlastAbility() {
         super(ID, AbilityStats.builder()
                 .kiCost(AnimeKiServerConfig.ABILITIES.kiBlast.kiCost.get())
-                .cooldownTicks(AnimeKiServerConfig.ABILITIES.kiBlast.cooldownTicks.get())
+                .cooldown(AnimeKiServerConfig.ABILITIES.kiBlast.cooldownTicks.get())
                 .chargeTicks(AnimeKiServerConfig.ABILITIES.kiBlast.chargedChargeTicks.get())
                 .range(AnimeKiServerConfig.ABILITIES.kiBlast.range.get())
                 .damage(AnimeKiServerConfig.ABILITIES.kiBlast.damage.get())
