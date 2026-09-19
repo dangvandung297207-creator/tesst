@@ -3,7 +3,7 @@ rods:
     display-name: "&6Wooden Fishing Rod"
     price: 0
     dps: 25
-    tension-resistance: 0.0
+    tension-resistance: 0.00
     cast-range: 20
     skill: power_pull
     skill-cooldown: 15
@@ -13,13 +13,27 @@ rods:
     encounter-rate: 0.00
     zone-efficiency: 0.00
 
+  bronze:
+    display-name: "&cBronze Fishing Rod"
+    price: 15000
+    dps: 80
+    tension-resistance: 0.04
+    cast-range: 22
+    skill: power_pull
+    skill-cooldown: 14
+    bite-speed: 0.04
+    rarity-luck: 0.02
+    size-bonus: 0.02
+    encounter-rate: 0.04
+    zone-efficiency: 0.02
+
   iron:
     display-name: "&fIron Fishing Rod"
     price: 50000
     dps: 250
     tension-resistance: 0.10
     cast-range: 25
-    skill: power_pull
+    skill: piercing_hook
     skill-cooldown: 13
     bite-speed: 0.08
     rarity-luck: 0.05
@@ -27,16 +41,72 @@ rods:
     encounter-rate: 0.08
     zone-efficiency: 0.05
 
+  steel:
+    display-name: "&7Steel Fishing Rod"
+    price: 180000
+    dps: 420
+    tension-resistance: 0.14
+    cast-range: 27
+    skill: piercing_hook
+    skill-cooldown: 12
+    bite-speed: 0.12
+    rarity-luck: 0.08
+    size-bonus: 0.06
+    encounter-rate: 0.11
+    zone-efficiency: 0.08
+
+  emerald:
+    display-name: "&aEmerald Fishing Rod"
+    price: 450000
+    dps: 650
+    tension-resistance: 0.17
+    cast-range: 29
+    skill: tidal_surge
+    skill-cooldown: 11
+    bite-speed: 0.15
+    rarity-luck: 0.10
+    size-bonus: 0.08
+    encounter-rate: 0.13
+    zone-efficiency: 0.10
+
   diamond:
     display-name: "&bDiamond Fishing Rod"
     price: 1000000
     dps: 900
     tension-resistance: 0.18
     cast-range: 30
-    skill: power_pull
+    skill: tidal_surge
     skill-cooldown: 10
     bite-speed: 0.16
     rarity-luck: 0.12
     size-bonus: 0.10
     encounter-rate: 0.14
     zone-efficiency: 0.12
+
+  mythic:
+    display-name: "&dMythic Fishing Rod"
+    price: 3500000
+    dps: 1600
+    tension-resistance: 0.24
+    cast-range: 33
+    skill: leviathan_grip
+    skill-cooldown: 9
+    bite-speed: 0.22
+    rarity-luck: 0.18
+    size-bonus: 0.16
+    encounter-rate: 0.20
+    zone-efficiency: 0.18
+
+  abyssal:
+    display-name: "&5Abyssal Fishing Rod"
+    price: 12000000
+    dps: 2600
+    tension-resistance: 0.32
+    cast-range: 36
+    skill: leviathan_grip
+    skill-cooldown: 8
+    bite-speed: 0.28
+    rarity-luck: 0.25
+    size-bonus: 0.22
+    encounter-rate: 0.26
+    zone-efficiency: 0.24

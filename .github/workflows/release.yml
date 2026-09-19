@@ -27,7 +27,7 @@ jobs:
         run: mvn -B -ntp clean package
 
       - name: Generate checksum
-        run: sha256sum target/mega-fishing-tycoon-1.1.1.jar > target/mega-fishing-tycoon-1.1.1.jar.sha256
+        run: sha256sum target/mega-fishing-tycoon-1.1.2.jar > target/mega-fishing-tycoon-1.1.2.jar.sha256
 
       - name: Write release notes
         run: |
@@ -38,6 +38,7 @@ jobs:
           - Full vanilla fishing replacement using the normal Fishing Rod
           - Custom boss-fight fishing loop with tension, direction, active skill, and fish phases
           - Dedicated Fishing World with zone-based world profiles and weaker casual normal-water fishing
+          - Expanded bundled defaults with more fish, more rod tiers, more pets, and richer zone progression pools
           - Weight-scaled fish visuals, environment-locked fish generation, rods and pets with environment bonuses
           - SQLite-backed persistence with central tick gameplay and server-authoritative combat and reward flow
           EOF
@@ -47,6 +48,6 @@ jobs:
         with:
           body_path: release-notes.md
           files: |
-            target/mega-fishing-tycoon-1.1.1.jar
-            target/original-mega-fishing-tycoon-1.1.1.jar
-            target/mega-fishing-tycoon-1.1.1.jar.sha256
+            target/mega-fishing-tycoon-1.1.2.jar
+            target/original-mega-fishing-tycoon-1.1.2.jar
+            target/mega-fishing-tycoon-1.1.2.jar.sha256

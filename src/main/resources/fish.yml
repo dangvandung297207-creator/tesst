@@ -25,12 +25,7 @@ fish:
     model:
       id: small_carp
       scale-base: 0.9
-      animations:
-        idle: swim
-        turn: turn
-        surge: surge
-        exhausted: exhausted
-        captured: captured
+      animations: { idle: swim, turn: turn, surge: surge, exhausted: exhausted, captured: captured }
 
   trout:
     display-name: "&fTrout"
@@ -49,12 +44,45 @@ fish:
     model:
       id: trout
       scale-base: 1.0
-      animations:
-        idle: swim
-        turn: turn
-        surge: surge
-        exhausted: exhausted
-        captured: captured
+      animations: { idle: swim, turn: turn, surge: surge, exhausted: exhausted, captured: captured }
+
+  river_bass:
+    display-name: "&2River Bass"
+    rarity: COMMON
+    display-material: COD
+    min-weight: 12
+    max-weight: 95
+    health: 650
+    pull-power: 4.5
+    swim-speed: 0.19
+    sell-multiplier: 1.15
+    base-value: 11
+    direction-change-min: 0.95
+    direction-change-max: 2.2
+    boss: false
+    model:
+      id: river_bass
+      scale-base: 1.0
+      animations: { idle: swim, turn: turn, surge: surge, exhausted: exhausted, captured: captured }
+
+  silver_herring:
+    display-name: "&7Silver Herring"
+    rarity: COMMON
+    display-material: SALMON
+    min-weight: 5
+    max-weight: 45
+    health: 420
+    pull-power: 3.5
+    swim-speed: 0.21
+    sell-multiplier: 1.05
+    base-value: 9
+    direction-change-min: 0.85
+    direction-change-max: 2.1
+    boss: false
+    model:
+      id: silver_herring
+      scale-base: 0.95
+      animations: { idle: swim, turn: turn, surge: surge, exhausted: exhausted, captured: captured }
 
   golden_carp:
     display-name: "&6Golden Carp"
@@ -73,12 +101,45 @@ fish:
     model:
       id: golden_carp
       scale-base: 1.1
-      animations:
-        idle: swim
-        turn: turn
-        surge: surge
-        exhausted: exhausted
-        captured: captured
+      animations: { idle: swim, turn: turn, surge: surge, exhausted: exhausted, captured: captured }
+
+  pearl_sardine:
+    display-name: "&bPearl Sardine"
+    rarity: UNCOMMON
+    display-material: TROPICAL_FISH
+    min-weight: 18
+    max-weight: 120
+    health: 950
+    pull-power: 5.2
+    swim-speed: 0.24
+    sell-multiplier: 1.35
+    base-value: 16
+    direction-change-min: 0.8
+    direction-change-max: 2.0
+    boss: false
+    model:
+      id: pearl_sardine
+      scale-base: 1.0
+      animations: { idle: swim, turn: turn, surge: surge, exhausted: exhausted, captured: captured }
+
+  mossy_koi:
+    display-name: "&aMossy Koi"
+    rarity: UNCOMMON
+    display-material: COD
+    min-weight: 35
+    max-weight: 240
+    health: 1650
+    pull-power: 6.5
+    swim-speed: 0.23
+    sell-multiplier: 1.5
+    base-value: 20
+    direction-change-min: 0.82
+    direction-change-max: 1.95
+    boss: false
+    model:
+      id: mossy_koi
+      scale-base: 1.12
+      animations: { idle: swim, turn: turn, surge: surge, exhausted: exhausted, captured: captured }
 
   giant_tuna:
     display-name: "&bGiant Tuna"
@@ -97,60 +158,7 @@ fish:
     model:
       id: giant_tuna
       scale-base: 1.35
-      animations:
-        idle: swim
-        turn: turn
-        surge: surge
-        exhausted: exhausted
-        captured: captured
-
-  swordfish:
-    display-name: "&3Swordfish"
-    rarity: EPIC
-    display-material: COD
-    min-weight: 900
-    max-weight: 9000
-    health: 45000
-    pull-power: 16
-    swim-speed: 0.42
-    sell-multiplier: 7.5
-    base-value: 18
-    direction-change-min: 0.75
-    direction-change-max: 1.8
-    boss: false
-    model:
-      id: swordfish
-      scale-base: 1.45
-      animations:
-        idle: swim
-        turn: turn
-        surge: surge
-        exhausted: exhausted
-        captured: captured
-
-  great_white_shark:
-    display-name: "&7Great White Shark"
-    rarity: EPIC
-    display-material: PUFFERFISH
-    min-weight: 2500
-    max-weight: 18000
-    health: 120000
-    pull-power: 24
-    swim-speed: 0.48
-    sell-multiplier: 9.0
-    base-value: 24
-    direction-change-min: 0.65
-    direction-change-max: 1.6
-    boss: true
-    model:
-      id: great_white_shark
-      scale-base: 1.75
-      animations:
-        idle: swim
-        turn: turn
-        surge: surge
-        exhausted: exhausted
-        captured: captured
+      animations: { idle: swim, turn: turn, surge: surge, exhausted: exhausted, captured: captured }
 
   frost_marlin:
     display-name: "&fFrost Marlin"
@@ -169,12 +177,121 @@ fish:
     model:
       id: frost_marlin
       scale-base: 1.55
-      animations:
-        idle: swim
-        turn: turn
-        surge: surge
-        exhausted: exhausted
-        captured: captured
+      animations: { idle: swim, turn: turn, surge: surge, exhausted: exhausted, captured: captured }
+
+  reef_snapper:
+    display-name: "&dReef Snapper"
+    rarity: RARE
+    display-material: TROPICAL_FISH
+    min-weight: 180
+    max-weight: 1400
+    health: 9000
+    pull-power: 10
+    swim-speed: 0.31
+    sell-multiplier: 3.8
+    base-value: 17
+    direction-change-min: 0.75
+    direction-change-max: 1.95
+    boss: false
+    model:
+      id: reef_snapper
+      scale-base: 1.25
+      animations: { idle: swim, turn: turn, surge: surge, exhausted: exhausted, captured: captured }
+
+  ember_koi:
+    display-name: "&cEmber Koi"
+    rarity: RARE
+    display-material: TROPICAL_FISH
+    min-weight: 220
+    max-weight: 1800
+    health: 11000
+    pull-power: 11
+    swim-speed: 0.33
+    sell-multiplier: 4.2
+    base-value: 18
+    direction-change-min: 0.72
+    direction-change-max: 1.88
+    boss: false
+    model:
+      id: ember_koi
+      scale-base: 1.28
+      animations: { idle: swim, turn: turn, surge: surge, exhausted: exhausted, captured: captured }
+
+  swordfish:
+    display-name: "&3Swordfish"
+    rarity: EPIC
+    display-material: COD
+    min-weight: 900
+    max-weight: 9000
+    health: 45000
+    pull-power: 16
+    swim-speed: 0.42
+    sell-multiplier: 7.5
+    base-value: 18
+    direction-change-min: 0.75
+    direction-change-max: 1.8
+    boss: false
+    model:
+      id: swordfish
+      scale-base: 1.45
+      animations: { idle: swim, turn: turn, surge: surge, exhausted: exhausted, captured: captured }
+
+  great_white_shark:
+    display-name: "&7Great White Shark"
+    rarity: EPIC
+    display-material: PUFFERFISH
+    min-weight: 2500
+    max-weight: 18000
+    health: 120000
+    pull-power: 24
+    swim-speed: 0.48
+    sell-multiplier: 9.0
+    base-value: 24
+    direction-change-min: 0.65
+    direction-change-max: 1.6
+    boss: true
+    model:
+      id: great_white_shark
+      scale-base: 1.75
+      animations: { idle: swim, turn: turn, surge: surge, exhausted: exhausted, captured: captured }
+
+  storm_manta:
+    display-name: "&9Storm Manta"
+    rarity: EPIC
+    display-material: TROPICAL_FISH
+    min-weight: 1600
+    max-weight: 13500
+    health: 82000
+    pull-power: 21
+    swim-speed: 0.47
+    sell-multiplier: 8.8
+    base-value: 23
+    direction-change-min: 0.62
+    direction-change-max: 1.55
+    boss: false
+    model:
+      id: storm_manta
+      scale-base: 1.7
+      animations: { idle: swim, turn: turn, surge: surge, exhausted: exhausted, captured: captured }
+
+  glacial_sturgeon:
+    display-name: "&fGlacial Sturgeon"
+    rarity: EPIC
+    display-material: SALMON
+    min-weight: 1800
+    max-weight: 15000
+    health: 90000
+    pull-power: 22
+    swim-speed: 0.43
+    sell-multiplier: 9.3
+    base-value: 25
+    direction-change-min: 0.6
+    direction-change-max: 1.48
+    boss: false
+    model:
+      id: glacial_sturgeon
+      scale-base: 1.75
+      animations: { idle: swim, turn: turn, surge: surge, exhausted: exhausted, captured: captured }
 
   magma_ray:
     display-name: "&cMagma Ray"
@@ -193,12 +310,45 @@ fish:
     model:
       id: magma_ray
       scale-base: 1.8
-      animations:
-        idle: swim
-        turn: turn
-        surge: surge
-        exhausted: exhausted
-        captured: captured
+      animations: { idle: swim, turn: turn, surge: surge, exhausted: exhausted, captured: captured }
+
+  coral_dragonfish:
+    display-name: "&dCoral Dragonfish"
+    rarity: LEGENDARY
+    display-material: TROPICAL_FISH
+    min-weight: 2400
+    max-weight: 17500
+    health: 155000
+    pull-power: 28
+    swim-speed: 0.53
+    sell-multiplier: 12.5
+    base-value: 31
+    direction-change-min: 0.52
+    direction-change-max: 1.35
+    boss: false
+    model:
+      id: coral_dragonfish
+      scale-base: 1.95
+      animations: { idle: swim, turn: turn, surge: surge, exhausted: exhausted, captured: captured }
+
+  thunder_eel:
+    display-name: "&eThunder Eel"
+    rarity: LEGENDARY
+    display-material: COD
+    min-weight: 3200
+    max-weight: 22000
+    health: 180000
+    pull-power: 31
+    swim-speed: 0.56
+    sell-multiplier: 13.5
+    base-value: 34
+    direction-change-min: 0.48
+    direction-change-max: 1.28
+    boss: true
+    model:
+      id: thunder_eel
+      scale-base: 2.0
+      animations: { idle: swim, turn: turn, surge: surge, exhausted: exhausted, captured: captured }
 
   mini_leviathan:
     display-name: "&5Mini Leviathan"
@@ -208,7 +358,7 @@ fish:
     max-weight: 100000
     health: 250000
     pull-power: 30
-    swim-speed: 0.5
+    swim-speed: 0.50
     sell-multiplier: 15.0
     base-value: 18
     direction-change-min: 0.7
@@ -217,12 +367,7 @@ fish:
     model:
       id: mini_leviathan
       scale-base: 2.1
-      animations:
-        idle: swim
-        turn: turn
-        surge: surge
-        exhausted: exhausted
-        captured: captured
+      animations: { idle: swim, turn: turn, surge: surge, exhausted: exhausted, captured: captured }
 
   void_whale:
     display-name: "&dVoid Whale"
@@ -241,12 +386,45 @@ fish:
     model:
       id: void_whale
       scale-base: 2.6
-      animations:
-        idle: swim
-        turn: turn
-        surge: surge
-        exhausted: exhausted
-        captured: captured
+      animations: { idle: swim, turn: turn, surge: surge, exhausted: exhausted, captured: captured }
+
+  abyss_lantern:
+    display-name: "&5Abyss Lantern"
+    rarity: MYTHICAL
+    display-material: TROPICAL_FISH
+    min-weight: 9000
+    max-weight: 76000
+    health: 270000
+    pull-power: 33
+    swim-speed: 0.57
+    sell-multiplier: 17.5
+    base-value: 30
+    direction-change-min: 0.42
+    direction-change-max: 1.18
+    boss: false
+    model:
+      id: abyss_lantern
+      scale-base: 2.15
+      animations: { idle: swim, turn: turn, surge: surge, exhausted: exhausted, captured: captured }
+
+  titan_koi:
+    display-name: "&6Titan Koi"
+    rarity: MYTHICAL
+    display-material: COD
+    min-weight: 15000
+    max-weight: 120000
+    health: 320000
+    pull-power: 35
+    swim-speed: 0.54
+    sell-multiplier: 19.0
+    base-value: 33
+    direction-change-min: 0.40
+    direction-change-max: 1.15
+    boss: false
+    model:
+      id: titan_koi
+      scale-base: 2.3
+      animations: { idle: swim, turn: turn, surge: surge, exhausted: exhausted, captured: captured }
 
   ancient_serpent:
     display-name: "&5Ancient Serpent"
@@ -265,9 +443,23 @@ fish:
     model:
       id: ancient_serpent
       scale-base: 3.2
-      animations:
-        idle: swim
-        turn: turn
-        surge: surge
-        exhausted: exhausted
-        captured: captured
+      animations: { idle: swim, turn: turn, surge: surge, exhausted: exhausted, captured: captured }
+
+  starforged_kraken:
+    display-name: "&dStarforged Kraken"
+    rarity: SECRET
+    display-material: PUFFERFISH
+    min-weight: 120000
+    max-weight: 850000
+    health: 1100000
+    pull-power: 56
+    swim-speed: 0.66
+    sell-multiplier: 42.0
+    base-value: 64
+    direction-change-min: 0.30
+    direction-change-max: 0.9
+    boss: true
+    model:
+      id: starforged_kraken
+      scale-base: 3.8
+      animations: { idle: swim, turn: turn, surge: surge, exhausted: exhausted, captured: captured }

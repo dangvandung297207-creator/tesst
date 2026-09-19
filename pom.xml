@@ -5,7 +5,7 @@
 
     <groupId>com.megafishing</groupId>
     <artifactId>mega-fishing-tycoon</artifactId>
-    <version>1.1.1</version>
+    <version>1.1.2</version>
     <packaging>jar</packaging>
 
     <name>MegaFishingTycoon</name>

@@ -33,6 +33,7 @@ Paper 26.2 / Java 25 plugin that fully replaces vanilla fishing with a custom bo
 - Phase 5 merchant ecosystem: island broker GUI, pet keeper GUI, rod reclaim flow, richer progression access from NPCs
 - Phase 6 onboarding/progression polish: starter tutorial replay, pet slot upgrades, and Pet Trainer merchant flow
 - Phase 7 fishing world rework: world profiles, dedicated Fishing World zones, zone modifiers, and environment-locked fish generation
+- Expanded bundled defaults: larger fish roster, more rod tiers, more pets, and richer zone progression pools
 
 ## Project structure
 
@@ -106,7 +107,7 @@ mvn package
 Output:
 
 ```text
-target/mega-fishing-tycoon-1.1.1.jar
+target/mega-fishing-tycoon-1.1.2.jar
 ```
 
 ## Note

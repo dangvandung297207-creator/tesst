@@ -8,6 +8,15 @@ pets:
     rarity-luck: 0.00
     large-fish-chance: 0.00
 
+  otter:
+    display-name: "&6River Otter"
+    sell-multiplier: 1.12
+    price: 2500
+    encounter-rate: 0.03
+    bite-speed: 0.04
+    rarity-luck: 0.00
+    large-fish-chance: 0.00
+
   dolphin:
     display-name: "&bDolphin"
     sell-multiplier: 1.20
@@ -15,6 +24,15 @@ pets:
     encounter-rate: 0.00
     bite-speed: 0.10
     rarity-luck: 0.00
+    large-fish-chance: 0.00
+
+  lantern_jelly:
+    display-name: "&3Lantern Jelly"
+    sell-multiplier: 1.25
+    price: 12000
+    encounter-rate: 0.04
+    bite-speed: 0.03
+    rarity-luck: 0.02
     large-fish-chance: 0.00
 
   golden_fish:
@@ -26,6 +44,15 @@ pets:
     rarity-luck: 0.10
     large-fish-chance: 0.00
 
+  albatross:
+    display-name: "&fStorm Albatross"
+    sell-multiplier: 1.40
+    price: 85000
+    encounter-rate: 0.08
+    bite-speed: 0.05
+    rarity-luck: 0.03
+    large-fish-chance: 0.00
+
   leviathan_pet:
     display-name: "&5Leviathan Hatchling"
     sell-multiplier: 1.60
@@ -34,3 +61,12 @@ pets:
     bite-speed: 0.00
     rarity-luck: 0.03
     large-fish-chance: 0.15
+
+  abyss_sprite:
+    display-name: "&dAbyss Sprite"
+    sell-multiplier: 1.85
+    price: 1200000
+    encounter-rate: 0.05
+    bite-speed: 0.04
+    rarity-luck: 0.08
+    large-fish-chance: 0.10

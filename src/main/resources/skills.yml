@@ -4,3 +4,21 @@ skills:
     cooldown: 15
     damage-multiplier: 5.0
     tension-reduction: 15.0
+
+  piercing_hook:
+    display-name: "&3Piercing Hook"
+    cooldown: 12
+    damage-multiplier: 6.2
+    tension-reduction: 10.0
+
+  tidal_surge:
+    display-name: "&9Tidal Surge"
+    cooldown: 14
+    damage-multiplier: 4.8
+    tension-reduction: 22.0
+
+  leviathan_grip:
+    display-name: "&5Leviathan Grip"
+    cooldown: 18
+    damage-multiplier: 8.0
+    tension-reduction: 18.0
