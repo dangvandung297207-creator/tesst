@@ -31,6 +31,6 @@ jobs:
         with:
           name: mega-fishing-tycoon-jar
           path: |
-            target/mega-fishing-tycoon-1.0.0.jar
-            target/original-mega-fishing-tycoon-1.0.0.jar
+            target/mega-fishing-tycoon-1.1.0.jar
+            target/original-mega-fishing-tycoon-1.1.0.jar
           if-no-files-found: error

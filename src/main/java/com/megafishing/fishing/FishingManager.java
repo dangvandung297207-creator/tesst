@@ -149,6 +149,7 @@ public class FishingManager implements Listener {
     @EventHandler
     public void onJoin(PlayerJoinEvent event) {
         playerDataManager.loadAsync(event.getPlayer());
+        Bukkit.getScheduler().runTaskLater(plugin, () -> sendWorldEntryFeedback(event.getPlayer()), 10L);
     }
 
     @EventHandler
@@ -171,6 +172,7 @@ public class FishingManager implements Listener {
     @EventHandler
     public void onWorldChange(PlayerChangedWorldEvent event) {
         cancelSession(event.getPlayer(), sessions.remove(event.getPlayer().getUniqueId()), FishingState.CANCELLED, true, messages.raw("cast-cancelled"));
+        sendWorldEntryFeedback(event.getPlayer());
     }
 
     @EventHandler(priority = EventPriority.HIGHEST, ignoreCancelled = false)
@@ -235,6 +237,7 @@ public class FishingManager implements Listener {
         }
         biteController.schedule(session, currentTick);
         sessions.put(player.getUniqueId(), session);
+        playEnvironmentStartFeedback(player, session);
         messages.send(player, "cast-started");
     }
 
@@ -478,7 +481,7 @@ public class FishingManager implements Listener {
             messages.send(player, "bag-full");
             return;
         }
-        long value = economyManager.calculateValue(data, session.getFish().getDefinition(), session.getFish().getWeight(), session.getFish().getDefinition().getRarity());
+        long value = economyManager.calculateValue(data, session.getFish().getDefinition(), session.getFish().getWeight(), session.getFish().getDefinition().getRarity(), session.getEnvironment());
         CaughtFishRecord record = new CaughtFishRecord(session.getFish().getDefinition().getId(), session.getFish().getWeight(), session.getFish().getDefinition().getRarity(), value, System.currentTimeMillis());
         if (!storageManager.addFish(data, record)) {
             messages.send(player, "bag-full");
@@ -553,21 +556,35 @@ public class FishingManager implements Listener {
         if (session.getFish() == null) {
             return;
         }
+        String fishLine = session.getFish().getDefinition().getDisplayName() + " &7• &f" + session.getFish().getDefinition().getRarity().name()
+                + " &7• &b" + Text.number(session.getFish().getWeight()) + "kg";
+        if (session.getFish().getSizeTier().isMassive()) {
+            messages.title(player, messages.raw("massive-creature-title"), fishLine);
+            player.playSound(player.getLocation(), Sound.ENTITY_WARDEN_ROAR, 0.8F, 1.45F);
+            return;
+        }
         switch (session.getFish().getDefinition().getRarity()) {
             case SECRET -> {
-                messages.title(player, messages.raw("secret-catch-title"), session.getFish().getDefinition().getDisplayName());
+                messages.title(player, messages.raw("secret-catch-title"), fishLine);
                 player.playSound(player.getLocation(), Sound.UI_TOAST_CHALLENGE_COMPLETE, 1.0F, 0.8F);
             }
             case LEGENDARY, MYTHICAL -> {
-                messages.title(player, messages.raw("legendary-catch-title"), session.getFish().getDefinition().getDisplayName());
+                String titleKey = session.getFish().getDefinition().getRarity() == com.megafishing.fish.FishRarity.MYTHICAL
+                        ? "mythical-fish-title"
+                        : "legendary-catch-title";
+                messages.title(player, messages.raw(titleKey), fishLine);
                 player.playSound(player.getLocation(), Sound.UI_TOAST_CHALLENGE_COMPLETE, 1.0F, 1.1F);
             }
             case RARE, EPIC -> {
-                messages.title(player, messages.raw("rare-catch-title"), session.getFish().getDefinition().getDisplayName());
+                messages.title(player, messages.raw("rare-catch-title"), fishLine);
                 player.playSound(player.getLocation(), Sound.BLOCK_AMETHYST_BLOCK_RESONATE, 0.9F, 1.3F);
             }
             default -> player.playSound(player.getLocation(), Sound.ENTITY_COD_AMBIENT, 0.7F, 1.3F);
         }
+        messages.sendRaw(player, messages.raw("fish-spotted")
+                .replace("{fish}", session.getFish().getDefinition().getDisplayName())
+                .replace("{rarity}", session.getFish().getDefinition().getRarity().name())
+                .replace("{weight}", Text.number(session.getFish().getWeight())));
     }
 
     private void handlePhaseTransition(Player player, FishingSession session) {
@@ -628,10 +645,40 @@ public class FishingManager implements Listener {
         messages.sendRaw(player, "&8&m══════════════════════");
         messages.sendRaw(player, "&6&lCATCH!");
         messages.sendRaw(player, fish.getDefinition().getDisplayName());
+        messages.sendRaw(player, "&7Zone: &b" + session.getZone().getDisplayName());
         messages.sendRaw(player, "&7Weight: &f" + Text.number(fish.getWeight()) + "kg");
         messages.sendRaw(player, "&7Rarity: &f" + fish.getDefinition().getRarity().name());
         messages.sendRaw(player, "&7Value: &6" + Text.number(value));
         messages.sendRaw(player, "&8&m══════════════════════");
+    }
+
+    private void playEnvironmentStartFeedback(Player player, FishingSession session) {
+        if (session.getEnvironment() == null || session.getZone() == null) {
+            return;
+        }
+        String title = session.getZone().getDisplayName();
+        String subtitle = session.getZone().getSubtitle();
+        if (subtitle == null || subtitle.isBlank()) {
+            subtitle = session.getEnvironment().getProfile().getStartSubtitle();
+        }
+        messages.title(player, title, subtitle);
+        messages.sendRaw(player, messages.raw("environment-start")
+                .replace("{zone}", session.getZone().getDisplayName())
+                .replace("{profile}", session.getEnvironment().getProfile().getDisplayName()));
+        player.playSound(player.getLocation(), Sound.BLOCK_BELL_USE, 0.5F, session.getEnvironment().getProfile().isPrimaryFishingWorld() ? 1.3F : 0.9F);
+    }
+
+    private void sendWorldEntryFeedback(Player player) {
+        if (player == null || !player.isOnline() || player.getWorld() == null || plugin.fishingEnvironmentManager() == null) {
+            return;
+        }
+        FishingWorldProfile profile = plugin.fishingEnvironmentManager().profileFor(player.getWorld());
+        if (profile == null) {
+            return;
+        }
+        for (String line : profile.getEntryMessages()) {
+            messages.sendRaw(player, line.replace("{world}", player.getWorld().getName()).replace("{profile}", profile.getDisplayName()));
+        }
     }
 
     private String phaseColor(com.megafishing.fish.FishPhase phase) {

@@ -22,6 +22,64 @@ fish:
     direction-change-min: 1.0
     direction-change-max: 2.5
     boss: false
+    model:
+      id: small_carp
+      scale-base: 0.9
+      animations:
+        idle: swim
+        turn: turn
+        surge: surge
+        exhausted: exhausted
+        captured: captured
+
+  trout:
+    display-name: "&fTrout"
+    rarity: COMMON
+    display-material: SALMON
+    min-weight: 8
+    max-weight: 65
+    health: 500
+    pull-power: 4
+    swim-speed: 0.18
+    sell-multiplier: 1.1
+    base-value: 10
+    direction-change-min: 0.9
+    direction-change-max: 2.3
+    boss: false
+    model:
+      id: trout
+      scale-base: 1.0
+      animations:
+        idle: swim
+        turn: turn
+        surge: surge
+        exhausted: exhausted
+        captured: captured
+
+  golden_carp:
+    display-name: "&6Golden Carp"
+    rarity: UNCOMMON
+    display-material: TROPICAL_FISH
+    min-weight: 25
+    max-weight: 180
+    health: 1200
+    pull-power: 6
+    swim-speed: 0.22
+    sell-multiplier: 1.4
+    base-value: 18
+    direction-change-min: 0.85
+    direction-change-max: 2.1
+    boss: false
+    model:
+      id: golden_carp
+      scale-base: 1.1
+      animations:
+        idle: swim
+        turn: turn
+        surge: surge
+        exhausted: exhausted
+        captured: captured
+
   giant_tuna:
     display-name: "&bGiant Tuna"
     rarity: RARE
@@ -35,10 +93,116 @@ fish:
     base-value: 12
     direction-change-min: 0.9
     direction-change-max: 2.2
+    boss: false
+    model:
+      id: giant_tuna
+      scale-base: 1.35
+      animations:
+        idle: swim
+        turn: turn
+        surge: surge
+        exhausted: exhausted
+        captured: captured
+
+  swordfish:
+    display-name: "&3Swordfish"
+    rarity: EPIC
+    display-material: COD
+    min-weight: 900
+    max-weight: 9000
+    health: 45000
+    pull-power: 16
+    swim-speed: 0.42
+    sell-multiplier: 7.5
+    base-value: 18
+    direction-change-min: 0.75
+    direction-change-max: 1.8
+    boss: false
+    model:
+      id: swordfish
+      scale-base: 1.45
+      animations:
+        idle: swim
+        turn: turn
+        surge: surge
+        exhausted: exhausted
+        captured: captured
+
+  great_white_shark:
+    display-name: "&7Great White Shark"
+    rarity: EPIC
+    display-material: PUFFERFISH
+    min-weight: 2500
+    max-weight: 18000
+    health: 120000
+    pull-power: 24
+    swim-speed: 0.48
+    sell-multiplier: 9.0
+    base-value: 24
+    direction-change-min: 0.65
+    direction-change-max: 1.6
     boss: true
+    model:
+      id: great_white_shark
+      scale-base: 1.75
+      animations:
+        idle: swim
+        turn: turn
+        surge: surge
+        exhausted: exhausted
+        captured: captured
+
+  frost_marlin:
+    display-name: "&fFrost Marlin"
+    rarity: RARE
+    display-material: SALMON
+    min-weight: 1200
+    max-weight: 8500
+    health: 55000
+    pull-power: 18
+    swim-speed: 0.40
+    sell-multiplier: 7.0
+    base-value: 20
+    direction-change-min: 0.7
+    direction-change-max: 1.75
+    boss: false
+    model:
+      id: frost_marlin
+      scale-base: 1.55
+      animations:
+        idle: swim
+        turn: turn
+        surge: surge
+        exhausted: exhausted
+        captured: captured
+
+  magma_ray:
+    display-name: "&cMagma Ray"
+    rarity: LEGENDARY
+    display-material: TROPICAL_FISH
+    min-weight: 1800
+    max-weight: 14000
+    health: 135000
+    pull-power: 26
+    swim-speed: 0.50
+    sell-multiplier: 11.0
+    base-value: 28
+    direction-change-min: 0.6
+    direction-change-max: 1.45
+    boss: false
+    model:
+      id: magma_ray
+      scale-base: 1.8
+      animations:
+        idle: swim
+        turn: turn
+        surge: surge
+        exhausted: exhausted
+        captured: captured
+
   mini_leviathan:
     display-name: "&5Mini Leviathan"
-    rarity: EPIC
+    rarity: MYTHICAL
     display-material: PUFFERFISH
     min-weight: 10000
     max-weight: 100000
@@ -50,3 +214,60 @@ fish:
     direction-change-min: 0.7
     direction-change-max: 1.8
     boss: true
+    model:
+      id: mini_leviathan
+      scale-base: 2.1
+      animations:
+        idle: swim
+        turn: turn
+        surge: surge
+        exhausted: exhausted
+        captured: captured
+
+  void_whale:
+    display-name: "&dVoid Whale"
+    rarity: MYTHICAL
+    display-material: COD
+    min-weight: 50000
+    max-weight: 350000
+    health: 450000
+    pull-power: 38
+    swim-speed: 0.58
+    sell-multiplier: 22.0
+    base-value: 36
+    direction-change-min: 0.45
+    direction-change-max: 1.25
+    boss: true
+    model:
+      id: void_whale
+      scale-base: 2.6
+      animations:
+        idle: swim
+        turn: turn
+        surge: surge
+        exhausted: exhausted
+        captured: captured
+
+  ancient_serpent:
+    display-name: "&5Ancient Serpent"
+    rarity: SECRET
+    display-material: PUFFERFISH
+    min-weight: 75000
+    max-weight: 600000
+    health: 800000
+    pull-power: 48
+    swim-speed: 0.62
+    sell-multiplier: 35.0
+    base-value: 52
+    direction-change-min: 0.35
+    direction-change-max: 1.0
+    boss: true
+    model:
+      id: ancient_serpent
+      scale-base: 3.2
+      animations:
+        idle: swim
+        turn: turn
+        surge: surge
+        exhausted: exhausted
+        captured: captured

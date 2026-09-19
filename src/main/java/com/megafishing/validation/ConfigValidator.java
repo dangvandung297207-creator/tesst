@@ -2,6 +2,8 @@ package com.megafishing.validation;
 
 import com.megafishing.MegaFishingPlugin;
 import com.megafishing.fish.FishDefinition;
+import com.megafishing.fish.FishRarity;
+import com.megafishing.fishing.FishingWorldProfile;
 import com.megafishing.fishing.FishingZone;
 import com.megafishing.progression.IslandDefinition;
 import com.megafishing.rod.RodDefinition;
@@ -25,10 +27,13 @@ public class ConfigValidator {
         validateSkillsAndRods(logger);
         validatePets(logger);
         validatePetProgression(logger);
+        validateWorldProfiles(logger);
         validatePhaseProfiles(logger);
+        validateSizeTiers(logger);
         validateCombatProfiles(logger);
         validateBagUpgrades(logger);
         validateIslands(logger);
+        validateZones(logger);
     }
 
     private void validateGlobalSettings(Logger logger) {
@@ -61,6 +66,9 @@ public class ConfigValidator {
             }
             if (fish.getPullPower() < 0.0D || fish.getSwimSpeed() < 0.0D) {
                 logger.warning("[MEGA-FISHING] Fish '" + fish.getId() + "' has negative movement stats.");
+            }
+            if (fish.getModel() == null || fish.getModel().getScaleBase() <= 0.0D) {
+                logger.warning("[MEGA-FISHING] Fish '" + fish.getId() + "' has invalid model scale-base.");
             }
         }
     }
@@ -127,6 +135,43 @@ public class ConfigValidator {
         }
     }
 
+    private void validateWorldProfiles(Logger logger) {
+        if (plugin.fishingEnvironmentManager().profiles().isEmpty()) {
+            logger.warning("[MEGA-FISHING] No fishing world profiles loaded.");
+            return;
+        }
+        for (FishingWorldProfile profile : plugin.fishingEnvironmentManager().profiles()) {
+            if (profile.getWorlds().isEmpty()) {
+                logger.warning("[MEGA-FISHING] Fishing world profile '" + profile.getId() + "' has no configured worlds.");
+            }
+            if (profile.getMinBiteSeconds() <= 0.0D || profile.getMaxBiteSeconds() < profile.getMinBiteSeconds()) {
+                logger.warning("[MEGA-FISHING] Fishing world profile '" + profile.getId() + "' has invalid bite clamp values.");
+            }
+        }
+    }
+
+    private void validateSizeTiers(Logger logger) {
+        var root = plugin.getConfig().getConfigurationSection("fish-size-tiers");
+        if (root == null) {
+            logger.warning("[MEGA-FISHING] fish-size-tiers section is missing.");
+            return;
+        }
+        for (String key : root.getKeys(false)) {
+            var section = root.getConfigurationSection(key);
+            if (section == null) {
+                continue;
+            }
+            if (section.getDouble("chance", 0.0D) < 0.0D
+                    || section.getDouble("scale", 1.0D) <= 0.0D
+                    || section.getDouble("health-multiplier", 1.0D) <= 0.0D) {
+                logger.warning("[MEGA-FISHING] Invalid fish-size-tiers entry for " + key + ".");
+            }
+        }
+        if (plugin.getConfig().getDouble("visuals.fish-scale-cap", 8.0D) <= 0.0D) {
+            logger.warning("[MEGA-FISHING] visuals.fish-scale-cap should be greater than 0.");
+        }
+    }
+
     private void validatePhaseProfiles(Logger logger) {
         var root = plugin.getConfig().getConfigurationSection("fish-phases");
         if (root == null) {
@@ -186,21 +231,39 @@ public class ConfigValidator {
             if (island.getUnlockCost() < 0L) {
                 logger.warning("[MEGA-FISHING] Island '" + island.getId() + "' has negative unlock cost.");
             }
-            for (FishingZone zone : island.getZones()) {
-                if (zone.getEligibleFish().isEmpty()) {
-                    logger.warning("[MEGA-FISHING] Zone '" + zone.getId() + "' has no eligible fish.");
+        }
+    }
+
+    private void validateZones(Logger logger) {
+        if (plugin.fishingEnvironmentManager().zones().isEmpty()) {
+            logger.warning("[MEGA-FISHING] No fishing zones loaded.");
+            return;
+        }
+        for (FishingZone zone : plugin.fishingEnvironmentManager().zones()) {
+            if (zone.getEligibleFish().isEmpty()) {
+                logger.warning("[MEGA-FISHING] Zone '" + zone.getId() + "' has no eligible fish.");
+            }
+            if (zone.getRadius() == 0.0D) {
+                logger.warning("[MEGA-FISHING] Zone '" + zone.getId() + "' has radius 0, which is probably invalid.");
+            }
+            if (zone.getDepth() <= 0.0D && zone.getCenter() != null) {
+                logger.warning("[MEGA-FISHING] Zone '" + zone.getId() + "' has non-positive depth.");
+            }
+            if (plugin.islandManager().get(zone.getIslandId()) == null) {
+                logger.warning("[MEGA-FISHING] Zone '" + zone.getId() + "' references missing island '" + zone.getIslandId() + "'.");
+            }
+            if (!zone.getMinimumRodId().isBlank() && plugin.rodManager().getRegistry().getExact(zone.getMinimumRodId()) == null) {
+                logger.warning("[MEGA-FISHING] Zone '" + zone.getId() + "' references missing minimum rod '" + zone.getMinimumRodId() + "'.");
+            }
+            for (String fishId : zone.getEligibleFish().keySet()) {
+                if (plugin.fishManager().getRegistry().get(fishId) == null) {
+                    logger.warning("[MEGA-FISHING] Zone '" + zone.getId() + "' references missing fish '" + fishId + "'.");
                 }
-                if (zone.getRadius() == 0.0D) {
-                    logger.warning("[MEGA-FISHING] Zone '" + zone.getId() + "' has radius 0, which is probably invalid.");
+            }
+            for (FishRarity rarity : zone.getBlockedRarities()) {
+                if (rarity == FishRarity.COMMON && zone.getEligibleFish().size() > 0) {
+                    logger.warning("[MEGA-FISHING] Zone '" + zone.getId() + "' blocks COMMON rarity; verify casual fishing is still possible.");
                 }
-                if (zone.getDepth() <= 0.0D) {
-                    logger.warning("[MEGA-FISHING] Zone '" + zone.getId() + "' has non-positive depth.");
-                }
-                zone.getEligibleFish().keySet().forEach(fishId -> {
-                    if (plugin.fishManager().getRegistry().get(fishId) == null) {
-                        logger.warning("[MEGA-FISHING] Zone '" + zone.getId() + "' references missing fish '" + fishId + "'.");
-                    }
-                });
             }
         }
     }

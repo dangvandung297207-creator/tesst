@@ -12,6 +12,7 @@ public class FishingSession {
     private FishingState state;
     private final Location castLocation;
     private final FishingZone zone;
+    private final FishingEnvironment environment;
     private final RodDefinition rod;
     private FishController fish;
     private double tension;
@@ -29,10 +30,11 @@ public class FishingSession {
     private boolean tooFar;
     private ItemDisplay bobberDisplay;
 
-    public FishingSession(UUID playerId, Location castLocation, FishingZone zone, RodDefinition rod, long startTick) {
+    public FishingSession(UUID playerId, Location castLocation, FishingZone zone, FishingEnvironment environment, RodDefinition rod, long startTick) {
         this.playerId = playerId;
         this.castLocation = castLocation.clone();
         this.zone = zone;
+        this.environment = environment;
         this.rod = rod;
         this.startTick = startTick;
         this.state = FishingState.CASTING;
@@ -43,6 +45,7 @@ public class FishingSession {
     public void setState(FishingState state) { this.state = state; }
     public Location getCastLocation() { return castLocation.clone(); }
     public FishingZone getZone() { return zone; }
+    public FishingEnvironment getEnvironment() { return environment; }
     public RodDefinition getRod() { return rod; }
     public FishController getFish() { return fish; }
     public void setFish(FishController fish) { this.fish = fish; }

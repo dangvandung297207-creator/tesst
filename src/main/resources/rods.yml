@@ -7,6 +7,12 @@ rods:
     cast-range: 20
     skill: power_pull
     skill-cooldown: 15
+    bite-speed: 0.00
+    rarity-luck: 0.00
+    size-bonus: 0.00
+    encounter-rate: 0.00
+    zone-efficiency: 0.00
+
   iron:
     display-name: "&fIron Fishing Rod"
     price: 50000
@@ -15,6 +21,12 @@ rods:
     cast-range: 25
     skill: power_pull
     skill-cooldown: 13
+    bite-speed: 0.08
+    rarity-luck: 0.05
+    size-bonus: 0.04
+    encounter-rate: 0.08
+    zone-efficiency: 0.05
+
   diamond:
     display-name: "&bDiamond Fishing Rod"
     price: 1000000
@@ -23,3 +35,8 @@ rods:
     cast-range: 30
     skill: power_pull
     skill-cooldown: 10
+    bite-speed: 0.16
+    rarity-luck: 0.12
+    size-bonus: 0.10
+    encounter-rate: 0.14
+    zone-efficiency: 0.12

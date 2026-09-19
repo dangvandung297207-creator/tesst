@@ -3,6 +3,7 @@ package com.megafishing.economy;
 import com.megafishing.MegaFishingPlugin;
 import com.megafishing.fish.FishDefinition;
 import com.megafishing.fish.FishRarity;
+import com.megafishing.fishing.FishingEnvironment;
 import com.megafishing.persistence.CaughtFishRecord;
 import com.megafishing.persistence.PlayerData;
 import com.megafishing.pet.PetManager;
@@ -17,10 +18,11 @@ public class EconomyManager {
         this.petManager = petManager;
     }
 
-    public long calculateValue(PlayerData playerData, FishDefinition fish, double weight, FishRarity rarity) {
+    public long calculateValue(PlayerData playerData, FishDefinition fish, double weight, FishRarity rarity, FishingEnvironment environment) {
         double rarityMultiplier = plugin.getConfig().getDouble("economy.rarity-multipliers." + rarity.name(), 1.0D);
         double petMultiplier = petManager.getSellMultiplier(playerData);
-        double total = fish.getBaseValue() * weight * rarityMultiplier * petMultiplier * fish.getSellMultiplier();
+        double worldMultiplier = environment == null ? 1.0D : environment.getFishValueMultiplier();
+        double total = fish.getBaseValue() * weight * rarityMultiplier * worldMultiplier * petMultiplier * fish.getSellMultiplier();
         return MathUtil.safeMultiplyRound(total, 1.0D);
     }
 

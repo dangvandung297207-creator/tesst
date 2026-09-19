@@ -81,10 +81,11 @@ public class IslandMenuManager implements Listener {
         meta.displayName(Text.component(island.getDisplayName() + (unlocked ? " &a(UNLOCKED)" : " &c(LOCKED)")));
         List<net.kyori.adventure.text.Component> lore = new ArrayList<>();
         lore.add(Text.component("&7ID: &f" + island.getId()));
+        List<com.megafishing.fishing.FishingZone> islandZones = plugin.fishingEnvironmentManager().zonesForIsland(island.getId());
         lore.add(Text.component("&7Unlock Cost: &6" + Text.number(island.getUnlockCost())));
-        lore.add(Text.component("&7Zones: &f" + island.getZones().size()));
-        if (!island.getZones().isEmpty()) {
-            lore.add(Text.component("&7Primary Zone: &b" + island.getZones().get(0).getDisplayName()));
+        lore.add(Text.component("&7Zones: &f" + islandZones.size()));
+        if (!islandZones.isEmpty()) {
+            lore.add(Text.component("&7Primary Zone: &b" + islandZones.get(0).getDisplayName()));
         }
         if (unlocked) {
             lore.add(Text.component("&aAlready unlocked"));

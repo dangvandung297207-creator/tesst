@@ -1,36 +1,35 @@
 islands:
   starter:
-    display-name: "&aStarter Island"
+    display-name: "&aStarter Waters"
     unlock-cost: 0
     default-unlocked: true
-    zones:
-      starter_ocean:
-        display-name: "&bStarter Ocean"
-        worlds: []
-        center: "0,63,0"
-        radius: -1
-        depth: 256
-        fish:
-          small_carp: 70
-          giant_tuna: 25
-          mini_leviathan: 5
-        rarity-overrides: {}
 
-  deep_sea:
-    display-name: "&9Deep Sea"
-    unlock-cost: 250000
+  coral_coast:
+    display-name: "&bCoral Coast"
+    unlock-cost: 25000
     default-unlocked: false
-    zones:
-      deep_sea_ocean:
-        display-name: "&1Deep Sea Waters"
-        worlds: []
-        center: "500,63,0"
-        radius: 350
-        depth: 120
-        fish:
-          giant_tuna: 55
-          mini_leviathan: 45
-        rarity-overrides:
-          RARE: 16.0
-          EPIC: 9.0
-          LEGENDARY: 2.5
+
+  deep_ocean:
+    display-name: "&1Deep Ocean"
+    unlock-cost: 150000
+    default-unlocked: false
+
+  frozen_sea:
+    display-name: "&fFrozen Sea"
+    unlock-cost: 400000
+    default-unlocked: false
+
+  volcanic_sea:
+    display-name: "&cVolcanic Sea"
+    unlock-cost: 900000
+    default-unlocked: false
+
+  abyss:
+    display-name: "&5Abyss"
+    unlock-cost: 2500000
+    default-unlocked: false
+
+  mythic_waters:
+    display-name: "&dMythic Waters"
+    unlock-cost: 7000000
+    default-unlocked: false

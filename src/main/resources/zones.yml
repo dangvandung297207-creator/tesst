@@ -1,0 +1,189 @@
+zones:
+  normal_waters:
+    island-id: starter
+    display-name: "&7Normal Waters"
+    subtitle: "&7Casual fishing area"
+    worlds:
+      - world
+      - world_nether
+      - world_the_end
+    priority: -10
+    bite-time-multiplier: 1.10
+    fish-size-multiplier: 0.80
+    fish-hp-multiplier: 0.85
+    fish-value-multiplier: 0.75
+    rarity-multiplier: 0.60
+    encounter-multiplier: 0.85
+    boss-chance-multiplier: 0.35
+    blocked-rarities:
+      - SECRET
+    fish:
+      small_carp: 80
+      trout: 50
+      golden_carp: 15
+      giant_tuna: 2
+
+  beginner_lake:
+    island-id: starter
+    display-name: "&aBeginner Lake"
+    subtitle: "&6★ Fishing Grounds ★"
+    world: fishing_world
+    min-x: -240
+    max-x: 240
+    min-z: -240
+    max-z: 240
+    priority: 50
+    bite-time-multiplier: 1.00
+    fish-size-multiplier: 0.80
+    fish-hp-multiplier: 0.90
+    fish-value-multiplier: 0.85
+    rarity-multiplier: 0.80
+    encounter-multiplier: 1.20
+    boss-chance-multiplier: 0.50
+    fish:
+      small_carp: 70
+      trout: 45
+      golden_carp: 20
+
+  coral_coast:
+    island-id: coral_coast
+    display-name: "&bCoral Coast"
+    subtitle: "&6★ Fishing Grounds ★"
+    world: fishing_world
+    min-x: 241
+    max-x: 850
+    min-z: -250
+    max-z: 300
+    priority: 60
+    minimum-rod: iron
+    bite-time-multiplier: 0.90
+    fish-size-multiplier: 1.10
+    fish-hp-multiplier: 1.05
+    fish-value-multiplier: 1.10
+    rarity-multiplier: 1.15
+    encounter-multiplier: 1.35
+    boss-chance-multiplier: 1.10
+    fish:
+      trout: 25
+      golden_carp: 35
+      giant_tuna: 30
+      swordfish: 10
+
+  deep_ocean:
+    island-id: deep_ocean
+    display-name: "&1Deep Ocean"
+    subtitle: "&6★ Fishing Grounds ★"
+    world: fishing_world
+    min-x: -900
+    max-x: -241
+    min-z: -300
+    max-z: 300
+    priority: 70
+    minimum-rod: iron
+    bite-time-multiplier: 0.70
+    fish-size-multiplier: 1.50
+    fish-hp-multiplier: 1.20
+    fish-value-multiplier: 1.35
+    rarity-multiplier: 1.50
+    encounter-multiplier: 1.65
+    boss-chance-multiplier: 1.85
+    fish:
+      giant_tuna: 45
+      swordfish: 25
+      great_white_shark: 12
+      frost_marlin: 8
+      mini_leviathan: 3
+
+  frozen_sea:
+    island-id: frozen_sea
+    display-name: "&fFrozen Sea"
+    subtitle: "&6★ Fishing Grounds ★"
+    world: fishing_world
+    min-x: -300
+    max-x: 300
+    min-z: 301
+    max-z: 900
+    priority: 80
+    minimum-rod: diamond
+    bite-time-multiplier: 0.75
+    fish-size-multiplier: 1.40
+    fish-hp-multiplier: 1.30
+    fish-value-multiplier: 1.40
+    rarity-multiplier: 1.60
+    encounter-multiplier: 1.50
+    boss-chance-multiplier: 1.80
+    fish:
+      frost_marlin: 30
+      swordfish: 18
+      great_white_shark: 10
+      void_whale: 3
+
+  volcanic_sea:
+    island-id: volcanic_sea
+    display-name: "&cVolcanic Sea"
+    subtitle: "&6★ Fishing Grounds ★"
+    world: fishing_world
+    min-x: -300
+    max-x: 300
+    min-z: -900
+    max-z: -301
+    priority: 85
+    minimum-rod: diamond
+    bite-time-multiplier: 0.68
+    fish-size-multiplier: 1.70
+    fish-hp-multiplier: 1.45
+    fish-value-multiplier: 1.55
+    rarity-multiplier: 1.80
+    encounter-multiplier: 1.70
+    boss-chance-multiplier: 2.20
+    fish:
+      swordfish: 20
+      great_white_shark: 18
+      magma_ray: 12
+      void_whale: 4
+
+  abyss:
+    island-id: abyss
+    display-name: "&5Abyss"
+    subtitle: "&6★ Fishing Grounds ★"
+    world: fishing_world
+    min-x: 851
+    max-x: 1600
+    min-z: -600
+    max-z: 600
+    priority: 90
+    minimum-rod: diamond
+    bite-time-multiplier: 0.55
+    fish-size-multiplier: 2.20
+    fish-hp-multiplier: 1.80
+    fish-value-multiplier: 2.00
+    rarity-multiplier: 2.40
+    encounter-multiplier: 1.85
+    boss-chance-multiplier: 2.80
+    fish:
+      mini_leviathan: 18
+      void_whale: 12
+      ancient_serpent: 2
+
+  mythic_waters:
+    island-id: mythic_waters
+    display-name: "&dMythic Waters"
+    subtitle: "&6★ Fishing Grounds ★"
+    world: fishing_world
+    min-x: -1600
+    max-x: -901
+    min-z: -700
+    max-z: 700
+    priority: 100
+    minimum-rod: diamond
+    bite-time-multiplier: 0.50
+    fish-size-multiplier: 3.00
+    fish-hp-multiplier: 2.10
+    fish-value-multiplier: 2.50
+    rarity-multiplier: 3.00
+    encounter-multiplier: 2.00
+    boss-chance-multiplier: 3.20
+    fish:
+      magma_ray: 15
+      void_whale: 12
+      ancient_serpent: 4

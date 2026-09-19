@@ -24,11 +24,15 @@ Paper 26.2 / Java 25 plugin that fully replaces vanilla fishing with a custom bo
 - Pets with sell multipliers, purchases, equip/unequip GUI, slot upgrades, and merchant hooks
 - SQLite persistence
 - Central tick loop for all active sessions
+- Zone-based fishing environments with weaker normal waters and a dedicated Fishing World
+- Config-driven world profiles, fishing zones, bite speed modifiers, rarity scaling, and large-fish distributions
+- Fish model metadata with weight-reactive display scaling
 - Phase 2 hardening: config validation, safer async profile loading, stronger bag GUI locking, debug session logging
 - Phase 3 progression: rod shop GUI, bag upgrades, island unlock flow, merchant hooks
 - Phase 4 combat polish: fish phase transitions, stronger state-based behavior, line snap effects, catch reveal polish
 - Phase 5 merchant ecosystem: island broker GUI, pet keeper GUI, rod reclaim flow, richer progression access from NPCs
 - Phase 6 onboarding/progression polish: starter tutorial replay, pet slot upgrades, and Pet Trainer merchant flow
+- Phase 7 fishing world rework: world profiles, dedicated Fishing World zones, zone modifiers, and environment-locked fish generation
 
 ## Project structure
 
@@ -90,6 +94,8 @@ Key packages:
 - `fish.yml`
 - `pets.yml`
 - `islands.yml`
+- `fishing-world.yml`
+- `zones.yml`
 
 ## Build
 
@@ -100,7 +106,7 @@ mvn package
 Output:
 
 ```text
-target/mega-fishing-tycoon-1.0.0.jar
+target/mega-fishing-tycoon-1.1.0.jar
 ```
 
 ## Note

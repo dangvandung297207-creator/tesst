@@ -1,6 +1,7 @@
 package com.megafishing.fish;
 
 import com.megafishing.anti.RayTraceManager;
+import com.megafishing.fishing.FishingEnvironment;
 import com.megafishing.fishing.FishingZone;
 import com.megafishing.visual.DisplayFishVisual;
 import com.megafishing.visual.FishVisual;
@@ -19,17 +20,20 @@ public class FishController {
     private final UUID id = UUID.randomUUID();
     private final FishDefinition definition;
     private final FishingZone zone;
+    private final FishingEnvironment environment;
     private final Location anchor;
     private final FishVisual visual;
     private final Map<FishPhase, FishPhaseModifiers> phaseModifiers;
     private final Random random = new Random();
+    private final double maxHealth;
+    private final double weight;
+    private final FishSizeTier sizeTier;
+    private final double visualScale;
     private Vector position;
     private Vector velocity = new Vector();
     private Vector direction = new Vector(1, 0, 0);
     private Vector target;
     private double health;
-    private final double maxHealth;
-    private final double weight;
     private FishState state = FishState.SWIM;
     private FishPhase phase = FishPhase.NORMAL;
     private FishPhase pendingPhaseChange;
@@ -37,14 +41,18 @@ public class FishController {
     private long stuckTicks;
     private Vector lastStablePosition;
 
-    public FishController(FishDefinition definition, FishingZone zone, Location anchor, double weight, double maxHealth,
-                          Map<FishPhase, FishPhaseModifiers> phaseModifiers) {
+    public FishController(FishDefinition definition, FishingZone zone, FishingEnvironment environment, Location anchor,
+                          double weight, double maxHealth, Map<FishPhase, FishPhaseModifiers> phaseModifiers,
+                          FishSizeTier sizeTier, double visualScale) {
         this.definition = definition;
         this.zone = zone;
+        this.environment = environment;
         this.anchor = anchor.clone();
         this.weight = weight;
         this.maxHealth = maxHealth;
         this.phaseModifiers = phaseModifiers;
+        this.sizeTier = sizeTier;
+        this.visualScale = visualScale;
         this.health = maxHealth;
         this.position = anchor.toVector().add(new Vector(0.0D, -0.8D, 0.0D));
         this.target = this.position.clone();
@@ -53,7 +61,7 @@ public class FishController {
     }
 
     public void spawnVisual() {
-        visual.spawn(getLocation());
+        visual.spawn(getLocation(), direction, visualScale(), animationKey());
     }
 
     public void update(Player player, RayTraceManager rayTraceManager, long tick) {
@@ -86,7 +94,7 @@ public class FishController {
             stuckTicks = 0L;
             lastStablePosition = position.clone();
         }
-        visual.update(getLocation());
+        visual.update(getLocation(), direction, visualScale(), animationKey());
         updatePhase();
     }
 
@@ -177,6 +185,7 @@ public class FishController {
     public UUID getId() { return id; }
     public FishDefinition getDefinition() { return definition; }
     public FishingZone getZone() { return zone; }
+    public FishingEnvironment getEnvironment() { return environment; }
     public Location getAnchor() { return anchor.clone(); }
     public Location getLocation() { return position.toLocation(anchor.getWorld()); }
     public Vector getDirection() { return direction.clone(); }
@@ -185,9 +194,11 @@ public class FishController {
     public double getWeight() { return weight; }
     public FishState getState() { return state; }
     public FishPhase getPhase() { return phase; }
+    public FishSizeTier getSizeTier() { return sizeTier; }
     public long getStuckTicks() { return stuckTicks; }
     public boolean isVisualAlive() { return visual.isValid(); }
     public double getCurrentPullMultiplier() { return getPhaseModifiers().pullMultiplier(); }
+    public double getVisualScale() { return visualScale(); }
 
     public void setState(FishState state) { this.state = state; }
     public void setHealth(double health) { this.health = Math.max(0.0D, Math.min(maxHealth, health)); }
@@ -205,6 +216,19 @@ public class FishController {
             case ENRAGED -> new FishState[]{FishState.TURN_LEFT, FishState.TURN_LEFT, FishState.TURN_RIGHT, FishState.TURN_RIGHT, FishState.SWIM, FishState.SWIM, FishState.DIVE, FishState.SURGE, FishState.SHAKE};
             case FRENZY -> new FishState[]{FishState.TURN_LEFT, FishState.TURN_RIGHT, FishState.SWIM, FishState.DIVE, FishState.DIVE, FishState.SURGE, FishState.SURGE, FishState.SHAKE, FishState.SHAKE};
             default -> new FishState[]{FishState.TURN_LEFT, FishState.TURN_LEFT, FishState.TURN_RIGHT, FishState.TURN_RIGHT, FishState.TURN_RIGHT, FishState.SWIM, FishState.SWIM, FishState.SWIM, FishState.DIVE, FishState.DIVE, FishState.SURGE, FishState.SHAKE};
+        };
+    }
+
+    private double visualScale() {
+        return visualScale;
+    }
+
+    private String animationKey() {
+        return switch (state) {
+            case SURGE -> definition.getModel().animation("surge", "surge");
+            case TURN_LEFT, TURN_RIGHT -> definition.getModel().animation("turn", "turn");
+            case EXHAUSTED -> definition.getModel().animation("exhausted", "exhausted");
+            default -> definition.getModel().animation("idle", "swim");
         };
     }
 }

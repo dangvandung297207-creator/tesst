@@ -71,6 +71,11 @@ public class RodShopManager implements Listener {
         lore.add(Text.component("&7DPS: &f" + Text.number(rod.getDps())));
         lore.add(Text.component("&7Tension Resist: &a" + Text.percent(rod.getTensionResistance() * 100.0D)));
         lore.add(Text.component("&7Range: &f" + Text.number(rod.getCastRange())));
+        lore.add(Text.component("&7Bite Speed: &b-" + Text.percent(rod.getBiteSpeed() * 100.0D)));
+        lore.add(Text.component("&7Rarity Luck: &d+" + Text.percent(rod.getRarityLuck() * 100.0D)));
+        lore.add(Text.component("&7Size Bonus: &6+" + Text.percent(rod.getSizeBonus() * 100.0D)));
+        lore.add(Text.component("&7Encounter Rate: &a+" + Text.percent(rod.getEncounterRate() * 100.0D)));
+        lore.add(Text.component("&7Zone Efficiency: &3+" + Text.percent(rod.getZoneEfficiency() * 100.0D)));
         lore.add(Text.component("&7Skill: &b" + Text.plainEnum(rod.getSkillId())));
         if (data.getRodId().equalsIgnoreCase(rod.getId())) {
             lore.add(Text.component("&aCurrently equipped"));

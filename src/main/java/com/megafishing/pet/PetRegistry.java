@@ -31,7 +31,11 @@ public class PetRegistry {
                         id.toLowerCase(),
                         pet.getString("display-name", Text.plainEnum(id)),
                         Math.max(1.0D, pet.getDouble("sell-multiplier", 1.0D)),
-                        Math.max(0L, pet.getLong("price", 0L))
+                        Math.max(0L, pet.getLong("price", 0L)),
+                        Math.max(0.0D, pet.getDouble("encounter-rate", 0.0D)),
+                        Math.max(0.0D, pet.getDouble("bite-speed", 0.0D)),
+                        Math.max(0.0D, pet.getDouble("rarity-luck", 0.0D)),
+                        Math.max(0.0D, pet.getDouble("large-fish-chance", 0.0D))
                 ));
             } catch (Exception exception) {
                 logger.warning("[MEGA-FISHING] Failed to load pet '" + id + "': " + exception.getMessage());

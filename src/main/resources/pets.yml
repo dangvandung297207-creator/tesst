@@ -3,7 +3,34 @@ pets:
     display-name: "&eBaby Duck"
     sell-multiplier: 1.10
     price: 500
+    encounter-rate: 0.05
+    bite-speed: 0.00
+    rarity-luck: 0.00
+    large-fish-chance: 0.00
+
   dolphin:
     display-name: "&bDolphin"
-    sell-multiplier: 1.50
+    sell-multiplier: 1.20
     price: 5000
+    encounter-rate: 0.00
+    bite-speed: 0.10
+    rarity-luck: 0.00
+    large-fish-chance: 0.00
+
+  golden_fish:
+    display-name: "&6Golden Fish"
+    sell-multiplier: 1.35
+    price: 25000
+    encounter-rate: 0.00
+    bite-speed: 0.00
+    rarity-luck: 0.10
+    large-fish-chance: 0.00
+
+  leviathan_pet:
+    display-name: "&5Leviathan Hatchling"
+    sell-multiplier: 1.60
+    price: 250000
+    encounter-rate: 0.00
+    bite-speed: 0.00
+    rarity-luck: 0.03
+    large-fish-chance: 0.15

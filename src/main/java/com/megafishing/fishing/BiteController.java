@@ -3,6 +3,7 @@ package com.megafishing.fishing;
 import com.megafishing.MegaFishingPlugin;
 import com.megafishing.fish.FishController;
 import com.megafishing.fish.FishManager;
+import com.megafishing.util.MathUtil;
 import org.bukkit.Particle;
 import org.bukkit.Sound;
 import org.bukkit.entity.Player;
@@ -25,7 +26,16 @@ public class BiteController {
         if (max < min) {
             max = min;
         }
-        session.setBiteTick(currentTick + Math.round((min + (random.nextDouble() * (max - min))) * 20.0D));
+        double baseSeconds = min + (random.nextDouble() * (max - min));
+        double biteSeconds = baseSeconds;
+        if (session.getEnvironment() != null) {
+            biteSeconds *= session.getEnvironment().getBiteTimeMultiplier();
+            biteSeconds /= Math.max(0.05D, session.getEnvironment().getEncounterMultiplier());
+            biteSeconds = MathUtil.clamp(biteSeconds,
+                    session.getEnvironment().getProfile().getMinBiteSeconds(),
+                    session.getEnvironment().getProfile().getMaxBiteSeconds());
+        }
+        session.setBiteTick(currentTick + Math.round(biteSeconds * 20.0D));
     }
 
     public boolean shouldBite(FishingSession session, long currentTick) {
@@ -33,7 +43,7 @@ public class BiteController {
     }
 
     public void bite(Player player, FishingSession session, long currentTick) {
-        FishController fish = fishManager.rollAndSpawn(session.getZone(), session.getCastLocation());
+        FishController fish = fishManager.rollAndSpawn(session.getEnvironment(), session.getCastLocation());
         if (fish == null) {
             return;
         }

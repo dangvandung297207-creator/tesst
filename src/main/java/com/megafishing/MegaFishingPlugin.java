@@ -14,6 +14,7 @@ import com.megafishing.economy.SellManager;
 import com.megafishing.fish.FishManager;
 import com.megafishing.fishing.BiteController;
 import com.megafishing.fishing.CastController;
+import com.megafishing.fishing.FishingEnvironmentManager;
 import com.megafishing.fishing.FishingManager;
 import com.megafishing.persistence.DatabaseManager;
 import com.megafishing.persistence.PlayerDataManager;
@@ -49,6 +50,7 @@ public class MegaFishingPlugin extends JavaPlugin {
     private SkillManager skillManager;
     private PetManager petManager;
     private FishManager fishManager;
+    private FishingEnvironmentManager fishingEnvironmentManager;
     private IslandManager islandManager;
     private QuestManager questManager;
     private ProgressionManager progressionManager;
@@ -70,7 +72,7 @@ public class MegaFishingPlugin extends JavaPlugin {
     @Override
     public void onEnable() {
         saveDefaultConfig();
-        ensureResources(List.of("messages.yml", "skills.yml", "rods.yml", "fish.yml", "pets.yml", "islands.yml"));
+        ensureResources(List.of("messages.yml", "skills.yml", "rods.yml", "fish.yml", "pets.yml", "islands.yml", "fishing-world.yml", "zones.yml"));
 
         this.messages = new MessageManager(this);
         this.rodManager = new RodManager(this);
@@ -78,6 +80,7 @@ public class MegaFishingPlugin extends JavaPlugin {
         this.petManager = new PetManager(this);
         this.onboardingManager = new OnboardingManager(this);
         this.fishManager = new FishManager(this);
+        this.fishingEnvironmentManager = new FishingEnvironmentManager(this);
         this.islandManager = new IslandManager(this);
         this.questManager = new QuestManager();
         this.progressionManager = new ProgressionManager(islandManager);
@@ -104,7 +107,7 @@ public class MegaFishingPlugin extends JavaPlugin {
         RayTraceManager rayTraceManager = new RayTraceManager();
         ValidationManager validationManager = new ValidationManager();
         ExploitManager exploitManager = new ExploitManager();
-        CastController castController = new CastController(this, rayTraceManager, validationManager, islandManager, progressionManager);
+        CastController castController = new CastController(this, rayTraceManager, validationManager, fishingEnvironmentManager, progressionManager, rodManager);
         BiteController biteController = new BiteController(this, fishManager);
         DirectionController directionController = new DirectionController(this);
         TensionManager tensionManager = new TensionManager(this);
@@ -170,6 +173,7 @@ public class MegaFishingPlugin extends JavaPlugin {
         skillManager.load(new File(getDataFolder(), "skills.yml"), getLogger());
         petManager.reload();
         fishManager.reload();
+        fishingEnvironmentManager.reload();
         islandManager.reload();
         questManager.reload();
         getLogger().info("[MEGA-FISHING] Loaded " + fishManager.getRegistry().values().size() + " fish.");
@@ -177,6 +181,8 @@ public class MegaFishingPlugin extends JavaPlugin {
         validateDefinitions();
         configValidator.validate();
         getLogger().info("[MEGA-FISHING] Loaded " + petManager.getRegistry().values().size() + " pets.");
+        getLogger().info("[MEGA-FISHING] Loaded " + fishingEnvironmentManager.profiles().size() + " fishing profiles.");
+        getLogger().info("[MEGA-FISHING] Loaded " + fishingEnvironmentManager.zones().size() + " fishing zones.");
         getLogger().info("[MEGA-FISHING] Loaded " + islandManager.islands().size() + " islands.");
         if (autosaveTask != null) {
             startAutosave();
@@ -195,11 +201,11 @@ public class MegaFishingPlugin extends JavaPlugin {
                 getLogger().warning("[MEGA-FISHING] Rod '" + rod.getId() + "' references missing skill '" + rod.getSkillId() + "'.");
             }
         });
-        islandManager.islands().forEach(island -> island.getZones().forEach(zone -> zone.getEligibleFish().keySet().forEach(fishId -> {
+        fishingEnvironmentManager.zones().forEach(zone -> zone.getEligibleFish().keySet().forEach(fishId -> {
             if (fishManager.getRegistry().get(fishId) == null) {
                 getLogger().warning("[MEGA-FISHING] Zone '" + zone.getId() + "' references missing fish '" + fishId + "'.");
             }
-        })));
+        }));
     }
 
     private void ensureResources(List<String> names) {
@@ -224,6 +230,7 @@ public class MegaFishingPlugin extends JavaPlugin {
     public SkillManager skillManager() { return skillManager; }
     public PetManager petManager() { return petManager; }
     public FishManager fishManager() { return fishManager; }
+    public FishingEnvironmentManager fishingEnvironmentManager() { return fishingEnvironmentManager; }
     public IslandManager islandManager() { return islandManager; }
     public PlayerDataManager playerDataManager() { return playerDataManager; }
     public EconomyManager economyManager() { return economyManager; }

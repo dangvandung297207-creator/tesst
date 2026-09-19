@@ -71,8 +71,10 @@ public class PetMenuManager implements Listener {
             boolean owned = data.getOwnedPets().contains(pet.getId());
             boolean equipped = data.getEquippedPets().contains(pet.getId());
             String status = equipped ? "&aEQUIPPED" : owned ? "&eOWNED" : "&cLOCKED";
-            player.sendMessage(Text.component("&8- " + pet.getDisplayName() + " &8| &7Sell: &a" + Text.number(pet.getSellMultiplier()) + "x &8| &7Price: &6"
-                    + Text.number(pet.getPrice()) + " &8| " + status));
+            player.sendMessage(Text.component("&8- " + pet.getDisplayName() + " &8| &7Sell: &a" + Text.number(pet.getSellMultiplier()) + "x &8| &7Bite: &b-" + Text.percent(pet.getBiteSpeed() * 100.0D)
+                    + " &8| &7Rarity: &d+" + Text.percent(pet.getRarityLuck() * 100.0D)
+                    + " &8| &7Large: &6+" + Text.percent(pet.getLargeFishChance() * 100.0D)
+                    + " &8| &7Price: &6" + Text.number(pet.getPrice()) + " &8| " + status));
         }
     }
 
@@ -85,6 +87,10 @@ public class PetMenuManager implements Listener {
         meta.displayName(Text.component(pet.getDisplayName() + (equipped ? " &a(EQUIPPED)" : owned ? " &e(OWNED)" : " &c(LOCKED)")));
         List<net.kyori.adventure.text.Component> lore = new ArrayList<>();
         lore.add(Text.component("&7Sell Multiplier: &a" + Text.number(pet.getSellMultiplier()) + "x"));
+        lore.add(Text.component("&7Encounter Rate: &a+" + Text.percent(pet.getEncounterRate() * 100.0D)));
+        lore.add(Text.component("&7Bite Speed: &b-" + Text.percent(pet.getBiteSpeed() * 100.0D)));
+        lore.add(Text.component("&7Rarity Luck: &d+" + Text.percent(pet.getRarityLuck() * 100.0D)));
+        lore.add(Text.component("&7Large Fish Chance: &6+" + Text.percent(pet.getLargeFishChance() * 100.0D)));
         lore.add(Text.component("&7Price: &6" + Text.number(pet.getPrice())));
         lore.add(Text.component("&7Slots Used: &f" + data.getEquippedPets().size() + "&7/&f" + data.getMaxPetSlots()));
         if (equipped) {

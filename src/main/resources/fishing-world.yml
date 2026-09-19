@@ -1,0 +1,50 @@
+enabled: true
+world-name: fishing_world
+default-profile: normal
+
+fishing-worlds:
+  normal:
+    display-name: "&7Normal Waters"
+    worlds:
+      - world
+      - world_nether
+      - world_the_end
+    bite-time-multiplier: 1.75
+    fish-size-multiplier: 0.55
+    fish-hp-multiplier: 0.65
+    fish-value-multiplier: 0.60
+    rarity-multiplier: 0.45
+    encounter-multiplier: 0.40
+    boss-chance-multiplier: 0.20
+    min-bite-seconds: 4.0
+    max-bite-seconds: 12.0
+    blocked-rarities:
+      - SECRET
+    entry-messages:
+      - "&7Normal Waters"
+      - "&7Fish are smaller and less common here."
+      - "&7Visit the Fishing World for better catches."
+    start-title: "&7Normal Waters"
+    start-subtitle: "&7Casual fishing with lower rewards."
+
+  fishing_world:
+    display-name: "&bFishing Grounds"
+    worlds:
+      - fishing_world
+    primary-fishing-world: true
+    bite-time-multiplier: 0.65
+    fish-size-multiplier: 1.50
+    fish-hp-multiplier: 1.35
+    fish-value-multiplier: 1.50
+    rarity-multiplier: 1.75
+    encounter-multiplier: 2.50
+    boss-chance-multiplier: 3.00
+    min-bite-seconds: 1.5
+    max-bite-seconds: 6.0
+    entry-messages:
+      - "&bYou entered the Fishing Grounds!"
+      - "&7Fish are larger here."
+      - "&7Rare fish are more common."
+      - "&7Bites are faster."
+    start-title: "&bFishing Grounds"
+    start-subtitle: "&7Fast bites, bigger fish, better rewards."

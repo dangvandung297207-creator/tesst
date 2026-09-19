@@ -63,6 +63,44 @@ fish-phases:
     pull-multiplier: 1.40
     turn-rate-multiplier: 1.35
 
+fish-size-tiers:
+  small:
+    min-progress: 0.0
+    max-progress: 0.25
+    chance: 50.0
+    scale: 0.8
+    health-multiplier: 0.85
+  medium:
+    min-progress: 0.25
+    max-progress: 0.55
+    chance: 30.0
+    scale: 1.0
+    health-multiplier: 1.0
+  large:
+    min-progress: 0.55
+    max-progress: 0.75
+    chance: 15.0
+    scale: 1.5
+    health-multiplier: 1.15
+  huge:
+    min-progress: 0.75
+    max-progress: 0.90
+    chance: 4.0
+    scale: 2.5
+    health-multiplier: 1.35
+  colossal:
+    min-progress: 0.90
+    max-progress: 0.99
+    chance: 0.9
+    scale: 4.0
+    health-multiplier: 1.60
+  titanic:
+    min-progress: 0.99
+    max-progress: 1.0
+    chance: 0.1
+    scale: 6.0
+    health-multiplier: 1.90
+
 combat:
   escape-knockback: 0.35
   skill-recoil-strength: 0.7
@@ -114,6 +152,9 @@ pets:
 
 tutorial:
   enabled: true
+
+visuals:
+  fish-scale-cap: 8.0
 
 save:
   autosave-seconds: 120

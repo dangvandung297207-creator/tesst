@@ -9,8 +9,15 @@ public class RodDefinition {
     private final double castRange;
     private final String skillId;
     private final int skillCooldown;
+    private final double biteSpeed;
+    private final double rarityLuck;
+    private final double sizeBonus;
+    private final double encounterRate;
+    private final double zoneEfficiency;
 
-    public RodDefinition(String id, String displayName, long price, double dps, double tensionResistance, double castRange, String skillId, int skillCooldown) {
+    public RodDefinition(String id, String displayName, long price, double dps, double tensionResistance,
+                         double castRange, String skillId, int skillCooldown, double biteSpeed,
+                         double rarityLuck, double sizeBonus, double encounterRate, double zoneEfficiency) {
         this.id = id;
         this.displayName = displayName;
         this.price = price;
@@ -19,6 +26,11 @@ public class RodDefinition {
         this.castRange = castRange;
         this.skillId = skillId;
         this.skillCooldown = skillCooldown;
+        this.biteSpeed = biteSpeed;
+        this.rarityLuck = rarityLuck;
+        this.sizeBonus = sizeBonus;
+        this.encounterRate = encounterRate;
+        this.zoneEfficiency = zoneEfficiency;
     }
 
     public String getId() { return id; }
@@ -29,4 +41,9 @@ public class RodDefinition {
     public double getCastRange() { return castRange; }
     public String getSkillId() { return skillId; }
     public int getSkillCooldown() { return skillCooldown; }
+    public double getBiteSpeed() { return biteSpeed; }
+    public double getRarityLuck() { return rarityLuck; }
+    public double getSizeBonus() { return sizeBonus; }
+    public double getEncounterRate() { return encounterRate; }
+    public double getZoneEfficiency() { return zoneEfficiency; }
 }

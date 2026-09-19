@@ -46,6 +46,10 @@ public class RodManager {
         return create(data.getRodId());
     }
 
+    public boolean meetsRequirement(RodDefinition current, String minimumRodId) {
+        return current != null && registry.isAtLeast(current.getId(), minimumRodId);
+    }
+
     public RodRegistry getRegistry() {
         return registry;
     }

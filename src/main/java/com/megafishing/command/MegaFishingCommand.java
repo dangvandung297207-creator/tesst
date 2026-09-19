@@ -90,6 +90,14 @@ public class MegaFishingCommand implements CommandExecutor, TabCompleter {
                 player.sendMessage(Text.component("&7Escaped: &c" + data.getStatistics().getFishEscaped()));
                 player.sendMessage(Text.component("&7Largest: &f" + data.getStatistics().getLargestFishId() + " &7(" + Text.number(data.getStatistics().getLargestFishWeight()) + "kg)"));
                 player.sendMessage(Text.component("&7Unlocked Islands: &b" + data.getUnlockedIslands().size()));
+                var currentProfile = plugin.fishingEnvironmentManager().profileFor(player.getWorld());
+                var currentZone = plugin.fishingEnvironmentManager().findZone(player.getLocation());
+                if (currentProfile != null) {
+                    player.sendMessage(Text.component("&7Fishing Profile: &f" + currentProfile.getDisplayName()));
+                }
+                if (currentZone != null) {
+                    player.sendMessage(Text.component("&7Fishing Zone: &b" + currentZone.getDisplayName()));
+                }
                 player.sendMessage(Text.component("&7Pet Slots: &f" + data.getEquippedPets().size() + "&7/&f" + data.getMaxPetSlots()));
                 player.sendMessage(Text.component("&7Pet Slot Upgrade: &f" + plugin.petSlotUpgradeManager().nextUpgradePreview(data)));
                 player.sendMessage(Text.component("&7Pet Sell Multiplier: &a" + Text.number(plugin.petManager().getSellMultiplier(data)) + "x"));

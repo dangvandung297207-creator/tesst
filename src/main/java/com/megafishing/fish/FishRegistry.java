@@ -45,6 +45,21 @@ public class FishRegistry {
                 if (material == null) {
                     material = Material.COD;
                 }
+                ConfigurationSection modelSection = section.getConfigurationSection("model");
+                Map<String, String> animations = new LinkedHashMap<>();
+                if (modelSection != null) {
+                    ConfigurationSection animationSection = modelSection.getConfigurationSection("animations");
+                    if (animationSection != null) {
+                        for (String animationKey : animationSection.getKeys(false)) {
+                            animations.put(animationKey.toLowerCase(), animationSection.getString(animationKey, animationKey));
+                        }
+                    }
+                }
+                FishModelDefinition model = new FishModelDefinition(
+                        modelSection == null ? id.toLowerCase() : modelSection.getString("id", id.toLowerCase()),
+                        modelSection == null ? 1.0D : Math.max(0.10D, modelSection.getDouble("scale-base", 1.0D)),
+                        animations
+                );
                 FishDefinition definition = new FishDefinition(
                         id.toLowerCase(),
                         section.getString("display-name", Text.plainEnum(id)),
@@ -59,7 +74,8 @@ public class FishRegistry {
                         Math.max(0.01D, section.getDouble("base-value", 1.0D)),
                         Math.max(0.2D, section.getDouble("direction-change-min", 1.0D)),
                         Math.max(section.getDouble("direction-change-min", 1.0D), section.getDouble("direction-change-max", 2.0D)),
-                        section.getBoolean("boss", false)
+                        section.getBoolean("boss", false),
+                        model
                 );
                 fish.put(definition.getId(), definition);
             } catch (Exception exception) {

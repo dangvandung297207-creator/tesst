@@ -5,9 +5,11 @@ import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.file.YamlConfiguration;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.logging.Logger;
 
@@ -35,7 +37,12 @@ public class RodRegistry {
                         Math.max(0.0D, rod.getDouble("tension-resistance", 0.0D)),
                         Math.max(2.0D, rod.getDouble("cast-range", 10.0D)),
                         rod.getString("skill", "power_pull").toLowerCase(),
-                        Math.max(1, rod.getInt("skill-cooldown", 15))
+                        Math.max(1, rod.getInt("skill-cooldown", 15)),
+                        Math.max(0.0D, rod.getDouble("bite-speed", 0.0D)),
+                        Math.max(0.0D, rod.getDouble("rarity-luck", 0.0D)),
+                        Math.max(0.0D, rod.getDouble("size-bonus", 0.0D)),
+                        Math.max(0.0D, rod.getDouble("encounter-rate", 0.0D)),
+                        Math.max(0.0D, rod.getDouble("zone-efficiency", 0.0D))
                 ));
             } catch (Exception exception) {
                 logger.warning("[MEGA-FISHING] Failed to load rod '" + id + "': " + exception.getMessage());
@@ -53,6 +60,28 @@ public class RodRegistry {
 
     public RodDefinition getExact(String id) {
         return id == null ? null : rods.get(id.toLowerCase());
+    }
+
+    public boolean isAtLeast(String currentId, String requiredId) {
+        if (requiredId == null || requiredId.isBlank()) {
+            return true;
+        }
+        int currentRank = rankOf(currentId);
+        int requiredRank = rankOf(requiredId);
+        return currentRank >= 0 && requiredRank >= 0 && currentRank >= requiredRank;
+    }
+
+    public int rankOf(String id) {
+        if (id == null) {
+            return -1;
+        }
+        List<String> ids = new ArrayList<>(rods.keySet());
+        for (int i = 0; i < ids.size(); i++) {
+            if (ids.get(i).equalsIgnoreCase(id)) {
+                return i;
+            }
+        }
+        return -1;
     }
 
     public Collection<RodDefinition> values() {

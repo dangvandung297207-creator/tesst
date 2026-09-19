@@ -17,10 +17,12 @@ public class FishDefinition {
     private final double directionChangeMin;
     private final double directionChangeMax;
     private final boolean boss;
+    private final FishModelDefinition model;
 
     public FishDefinition(String id, String displayName, FishRarity rarity, Material displayMaterial, double minWeight,
                           double maxWeight, double maxHealth, double pullPower, double swimSpeed, double sellMultiplier,
-                          double baseValue, double directionChangeMin, double directionChangeMax, boolean boss) {
+                          double baseValue, double directionChangeMin, double directionChangeMax, boolean boss,
+                          FishModelDefinition model) {
         this.id = id;
         this.displayName = displayName;
         this.rarity = rarity;
@@ -35,6 +37,7 @@ public class FishDefinition {
         this.directionChangeMin = directionChangeMin;
         this.directionChangeMax = directionChangeMax;
         this.boss = boss;
+        this.model = model;
     }
 
     public String getId() { return id; }
@@ -51,4 +54,5 @@ public class FishDefinition {
     public double getDirectionChangeMin() { return directionChangeMin; }
     public double getDirectionChangeMax() { return directionChangeMax; }
     public boolean isBoss() { return boss; }
+    public FishModelDefinition getModel() { return model; }
 }
