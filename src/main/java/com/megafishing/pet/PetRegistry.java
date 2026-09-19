@@ -4,7 +4,6 @@ import com.megafishing.util.Text;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.file.YamlConfiguration;
 
-import java.io.File;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.LinkedHashMap;
@@ -14,9 +13,8 @@ import java.util.logging.Logger;
 public class PetRegistry {
     private final Map<String, PetDefinition> pets = new LinkedHashMap<>();
 
-    public void load(File file, Logger logger) {
+    public void load(YamlConfiguration yaml, Logger logger) {
         pets.clear();
-        YamlConfiguration yaml = YamlConfiguration.loadConfiguration(file);
         ConfigurationSection section = yaml.getConfigurationSection("pets");
         if (section == null) {
             return;

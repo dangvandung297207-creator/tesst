@@ -5,7 +5,6 @@ import org.bukkit.Material;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.file.YamlConfiguration;
 
-import java.io.File;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.LinkedHashMap;
@@ -16,10 +15,9 @@ public class FishRegistry {
     private final Map<String, FishDefinition> fish = new LinkedHashMap<>();
     private final Map<FishRarity, Double> rarityDefaults = new LinkedHashMap<>();
 
-    public void load(File file, Logger logger) {
+    public void load(YamlConfiguration yaml, Logger logger) {
         fish.clear();
         rarityDefaults.clear();
-        YamlConfiguration yaml = YamlConfiguration.loadConfiguration(file);
         ConfigurationSection defaults = yaml.getConfigurationSection("rarity-defaults");
         if (defaults != null) {
             for (String key : defaults.getKeys(false)) {

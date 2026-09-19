@@ -3,8 +3,6 @@ package com.megafishing.pet;
 import com.megafishing.MegaFishingPlugin;
 import com.megafishing.persistence.PlayerData;
 
-import java.io.File;
-
 public class PetManager {
     public enum PurchaseResult {
         SUCCESS,
@@ -29,7 +27,7 @@ public class PetManager {
     }
 
     public void reload() {
-        registry.load(new File(plugin.getDataFolder(), "pets.yml"), plugin.getLogger());
+        registry.load(plugin.loadBundledConfiguration("pets.yml"), plugin.getLogger());
     }
 
     public PetRegistry getRegistry() {

@@ -106,7 +106,7 @@ mvn package
 Output:
 
 ```text
-target/mega-fishing-tycoon-1.1.0.jar
+target/mega-fishing-tycoon-1.1.1.jar
 ```
 
 ## Note

@@ -4,7 +4,6 @@ import com.megafishing.MegaFishingPlugin;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.file.YamlConfiguration;
 
-import java.io.File;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
@@ -21,7 +20,7 @@ public class IslandManager {
 
     public void reload() {
         islands.clear();
-        YamlConfiguration yaml = YamlConfiguration.loadConfiguration(new File(plugin.getDataFolder(), "islands.yml"));
+        YamlConfiguration yaml = plugin.loadBundledConfiguration("islands.yml");
         ConfigurationSection root = yaml.getConfigurationSection("islands");
         if (root == null) {
             return;

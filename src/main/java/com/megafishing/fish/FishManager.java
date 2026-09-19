@@ -5,7 +5,6 @@ import com.megafishing.fishing.FishingEnvironment;
 import com.megafishing.fishing.FishingZone;
 import com.megafishing.util.RandomUtil;
 
-import java.io.File;
 import java.util.ArrayList;
 import java.util.EnumMap;
 import java.util.LinkedHashMap;
@@ -25,7 +24,7 @@ public class FishManager {
     }
 
     public void reload() {
-        registry.load(new File(plugin.getDataFolder(), "fish.yml"), plugin.getLogger());
+        registry.load(plugin.loadBundledConfiguration("fish.yml"), plugin.getLogger());
     }
 
     public FishRegistry getRegistry() {

@@ -6,7 +6,6 @@ import net.kyori.adventure.title.Title;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
 
-import java.io.File;
 import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
@@ -20,7 +19,7 @@ public class MessageManager {
     }
 
     public void reload() {
-        this.messages = YamlConfiguration.loadConfiguration(new File(plugin.getDataFolder(), "messages.yml"));
+        this.messages = plugin.loadBundledConfiguration("messages.yml");
     }
 
     public String raw(String path) {

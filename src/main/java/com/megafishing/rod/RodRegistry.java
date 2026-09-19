@@ -4,7 +4,6 @@ import com.megafishing.util.Text;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.file.YamlConfiguration;
 
-import java.io.File;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
@@ -16,9 +15,8 @@ import java.util.logging.Logger;
 public class RodRegistry {
     private final Map<String, RodDefinition> rods = new LinkedHashMap<>();
 
-    public void load(File file, Logger logger) {
+    public void load(YamlConfiguration yaml, Logger logger) {
         rods.clear();
-        YamlConfiguration yaml = YamlConfiguration.loadConfiguration(file);
         ConfigurationSection section = yaml.getConfigurationSection("rods");
         if (section == null) {
             return;

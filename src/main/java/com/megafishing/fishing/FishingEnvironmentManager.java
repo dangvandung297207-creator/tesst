@@ -13,7 +13,6 @@ import org.bukkit.World;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.file.YamlConfiguration;
 
-import java.io.File;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
@@ -183,7 +182,7 @@ public class FishingEnvironmentManager {
     }
 
     private void loadProfiles() {
-        YamlConfiguration yaml = YamlConfiguration.loadConfiguration(new File(plugin.getDataFolder(), "fishing-world.yml"));
+        YamlConfiguration yaml = plugin.loadBundledConfiguration("fishing-world.yml");
         enabled = yaml.getBoolean("enabled", true);
         primaryWorldName = yaml.getString("world-name", "fishing_world");
         defaultProfileId = yaml.getString("default-profile", "normal").toLowerCase();
@@ -226,7 +225,7 @@ public class FishingEnvironmentManager {
     }
 
     private void loadZones() {
-        YamlConfiguration yaml = YamlConfiguration.loadConfiguration(new File(plugin.getDataFolder(), "zones.yml"));
+        YamlConfiguration yaml = plugin.loadBundledConfiguration("zones.yml");
         ConfigurationSection root = yaml.getConfigurationSection("zones");
         if (root == null) {
             return;

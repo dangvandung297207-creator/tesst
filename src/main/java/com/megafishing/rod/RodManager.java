@@ -7,8 +7,6 @@ import org.bukkit.enchantments.Enchantment;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.Damageable;
 
-import java.io.File;
-
 public class RodManager {
     private final MegaFishingPlugin plugin;
     private final RodRegistry registry = new RodRegistry();
@@ -20,7 +18,7 @@ public class RodManager {
     }
 
     public void reload() {
-        registry.load(new File(plugin.getDataFolder(), "rods.yml"), plugin.getLogger());
+        registry.load(plugin.loadBundledConfiguration("rods.yml"), plugin.getLogger());
     }
 
     public boolean isRod(ItemStack item) {
