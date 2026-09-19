@@ -1,0 +1,52 @@
+rarity-defaults:
+  COMMON: 65.0
+  UNCOMMON: 20.0
+  RARE: 9.0
+  EPIC: 4.0
+  LEGENDARY: 1.5
+  MYTHICAL: 0.45
+  SECRET: 0.05
+
+fish:
+  small_carp:
+    display-name: "&aSmall Carp"
+    rarity: COMMON
+    display-material: COD
+    min-weight: 2
+    max-weight: 20
+    health: 250
+    pull-power: 3
+    swim-speed: 0.15
+    sell-multiplier: 1.0
+    base-value: 8
+    direction-change-min: 1.0
+    direction-change-max: 2.5
+    boss: false
+  giant_tuna:
+    display-name: "&bGiant Tuna"
+    rarity: RARE
+    display-material: SALMON
+    min-weight: 500
+    max-weight: 5000
+    health: 25000
+    pull-power: 12
+    swim-speed: 0.35
+    sell-multiplier: 5.0
+    base-value: 12
+    direction-change-min: 0.9
+    direction-change-max: 2.2
+    boss: true
+  mini_leviathan:
+    display-name: "&5Mini Leviathan"
+    rarity: EPIC
+    display-material: PUFFERFISH
+    min-weight: 10000
+    max-weight: 100000
+    health: 250000
+    pull-power: 30
+    swim-speed: 0.5
+    sell-multiplier: 15.0
+    base-value: 18
+    direction-change-min: 0.7
+    direction-change-max: 1.8
+    boss: true

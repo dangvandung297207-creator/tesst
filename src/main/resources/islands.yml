@@ -1,0 +1,36 @@
+islands:
+  starter:
+    display-name: "&aStarter Island"
+    unlock-cost: 0
+    default-unlocked: true
+    zones:
+      starter_ocean:
+        display-name: "&bStarter Ocean"
+        worlds: []
+        center: "0,63,0"
+        radius: -1
+        depth: 256
+        fish:
+          small_carp: 70
+          giant_tuna: 25
+          mini_leviathan: 5
+        rarity-overrides: {}
+
+  deep_sea:
+    display-name: "&9Deep Sea"
+    unlock-cost: 250000
+    default-unlocked: false
+    zones:
+      deep_sea_ocean:
+        display-name: "&1Deep Sea Waters"
+        worlds: []
+        center: "500,63,0"
+        radius: 350
+        depth: 120
+        fish:
+          giant_tuna: 55
+          mini_leviathan: 45
+        rarity-overrides:
+          RARE: 16.0
+          EPIC: 9.0
+          LEGENDARY: 2.5

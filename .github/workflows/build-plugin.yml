@@ -1,0 +1,36 @@
+name: Build MegaFishing Plugin
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - arena/01a0bac5-tesst
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Temurin JDK 25
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '25'
+          cache: maven
+
+      - name: Build plugin
+        run: mvn -B -ntp clean package
+
+      - name: Upload plugin jar
+        uses: actions/upload-artifact@v4
+        with:
+          name: mega-fishing-tycoon-jar
+          path: |
+            target/mega-fishing-tycoon-1.0.0.jar
+            target/original-mega-fishing-tycoon-1.0.0.jar
+          if-no-files-found: error

@@ -1,0 +1,119 @@
+debug: false
+replace-vanilla-fishing: true
+
+fishing:
+  bite:
+    min-delay: 2.0
+    max-delay: 8.0
+    reaction-window: 2.0
+  cast:
+    require-water: true
+  active-skill:
+    method: SWAP_HANDS
+  update:
+    ui-interval-ticks: 4
+    raytrace-interval-ticks: 4
+    line-interval-ticks: 5
+    debug-log-interval-ticks: 40
+  safety:
+    max-session-distance: 32.0
+    obstruction-grace-seconds: 3.0
+    exhausted-capture-window: 2.0
+    stuck-seconds: 5.0
+
+direction:
+  good-dot-max: -0.5
+  neutral-dot-max: 0.5
+  good:
+    damage-multiplier: 1.0
+    tension-multiplier: 0.75
+    tension-decay-per-second: 5.0
+  neutral:
+    damage-multiplier: 0.75
+    tension-multiplier: 1.0
+    tension-decay-per-second: 1.0
+  bad:
+    damage-multiplier: 0.5
+    tension-multiplier: 1.5
+    tension-gain-per-second: 5.0
+
+tension:
+  start: 25.0
+  safe-max: 60.0
+  power-max: 80.0
+  break-point: 100.0
+  power-dps-multiplier: 2.0
+  danger-warning-sound-interval-ticks: 20
+  obstruction-gain-per-second: 8.0
+  out-of-range-gain-per-second: 12.0
+  reel-reduction: 3.0
+  exhausted-decay-per-second: 12.0
+
+fish-phases:
+  NORMAL:
+    speed-multiplier: 1.0
+    pull-multiplier: 1.0
+    turn-rate-multiplier: 1.0
+  ENRAGED:
+    speed-multiplier: 1.15
+    pull-multiplier: 1.18
+    turn-rate-multiplier: 1.15
+  FRENZY:
+    speed-multiplier: 1.35
+    pull-multiplier: 1.40
+    turn-rate-multiplier: 1.35
+
+combat:
+  escape-knockback: 0.35
+  skill-recoil-strength: 0.7
+  state-modifiers:
+    SURGE:
+      tension-bonus-per-second: 5.0
+      damage-multiplier: 0.80
+    SHAKE:
+      tension-bonus-per-second: 2.5
+      damage-multiplier: 0.90
+    DIVE:
+      tension-bonus-per-second: 1.5
+      damage-multiplier: 0.95
+
+economy:
+  rarity-multipliers:
+    COMMON: 1.0
+    UNCOMMON: 1.25
+    RARE: 1.75
+    EPIC: 2.5
+    LEGENDARY: 4.0
+    MYTHICAL: 7.0
+    SECRET: 15.0
+
+rod:
+  durability:
+    enabled: false
+    damage-on-catch: 1
+    damage-on-escape: 0
+
+bag:
+  default-capacity: 10
+  upgrade-costs:
+    25: 15000
+    50: 50000
+    100: 150000
+    250: 500000
+    500: 1500000
+    1000: 5000000
+    5000: 25000000
+
+pets:
+  default-slots: 2
+  slot-upgrade-costs:
+    3: 25000
+    4: 100000
+    5: 500000
+    6: 2000000
+
+tutorial:
+  enabled: true
+
+save:
+  autosave-seconds: 120

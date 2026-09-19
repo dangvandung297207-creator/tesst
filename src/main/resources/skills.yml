@@ -1,0 +1,6 @@
+skills:
+  power_pull:
+    display-name: "&bPower Pull"
+    cooldown: 15
+    damage-multiplier: 5.0
+    tension-reduction: 15.0

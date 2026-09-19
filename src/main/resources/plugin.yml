@@ -1,0 +1,14 @@
+name: MegaFishingTycoon
+version: 1.0.0
+main: com.megafishing.MegaFishingPlugin
+api-version: '26.2'
+authors: [Arena.ai]
+commands:
+  megafishing:
+    description: Mega Fishing Tycoon command
+    usage: /megafishing
+    aliases: [mfishing, mf]
+permissions:
+  megafishing.admin:
+    description: Mega Fishing admin commands
+    default: op

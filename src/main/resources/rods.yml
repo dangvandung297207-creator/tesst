@@ -1,0 +1,25 @@
+rods:
+  wooden:
+    display-name: "&6Wooden Fishing Rod"
+    price: 0
+    dps: 25
+    tension-resistance: 0.0
+    cast-range: 20
+    skill: power_pull
+    skill-cooldown: 15
+  iron:
+    display-name: "&fIron Fishing Rod"
+    price: 50000
+    dps: 250
+    tension-resistance: 0.10
+    cast-range: 25
+    skill: power_pull
+    skill-cooldown: 13
+  diamond:
+    display-name: "&bDiamond Fishing Rod"
+    price: 1000000
+    dps: 900
+    tension-resistance: 0.18
+    cast-range: 30
+    skill: power_pull
+    skill-cooldown: 10

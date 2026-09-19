@@ -1,0 +1,9 @@
+pets:
+  baby_duck:
+    display-name: "&eBaby Duck"
+    sell-multiplier: 1.10
+    price: 500
+  dolphin:
+    display-name: "&bDolphin"
+    sell-multiplier: 1.50
+    price: 5000
