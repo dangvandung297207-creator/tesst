@@ -6,30 +6,60 @@ islands:
 
   coral_coast:
     display-name: "&bCoral Coast"
-    unlock-cost: 25000
+    unlock-cost: 30000
+    default-unlocked: false
+
+  mangrove_bay:
+    display-name: "&2Mangrove Bay"
+    unlock-cost: 85000
     default-unlocked: false
 
   deep_ocean:
     display-name: "&1Deep Ocean"
-    unlock-cost: 150000
+    unlock-cost: 180000
     default-unlocked: false
 
   frozen_sea:
     display-name: "&fFrozen Sea"
-    unlock-cost: 400000
+    unlock-cost: 550000
+    default-unlocked: false
+
+  sunken_ruins:
+    display-name: "&6Sunken Ruins"
+    unlock-cost: 950000
     default-unlocked: false
 
   volcanic_sea:
     display-name: "&cVolcanic Sea"
-    unlock-cost: 900000
+    unlock-cost: 1600000
+    default-unlocked: false
+
+  storm_shelf:
+    display-name: "&9Storm Shelf"
+    unlock-cost: 2800000
     default-unlocked: false
 
   abyss:
     display-name: "&5Abyss"
-    unlock-cost: 2500000
+    unlock-cost: 4500000
+    default-unlocked: false
+
+  twilight_trench:
+    display-name: "&5Twilight Trench"
+    unlock-cost: 7500000
     default-unlocked: false
 
   mythic_waters:
     display-name: "&dMythic Waters"
-    unlock-cost: 7000000
+    unlock-cost: 12000000
+    default-unlocked: false
+
+  celestial_springs:
+    display-name: "&bCelestial Springs"
+    unlock-cost: 20000000
+    default-unlocked: false
+
+  leviathan_depths:
+    display-name: "&4Leviathan Depths"
+    unlock-cost: 35000000
     default-unlocked: false

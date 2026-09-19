@@ -14,6 +14,7 @@ import com.megafishing.economy.SellManager;
 import com.megafishing.fish.FishManager;
 import com.megafishing.fishing.BiteController;
 import com.megafishing.fishing.CastController;
+import com.megafishing.fishing.FishingCalendarManager;
 import com.megafishing.fishing.FishingEnvironmentManager;
 import com.megafishing.fishing.FishingManager;
 import com.megafishing.persistence.DatabaseManager;
@@ -53,6 +54,7 @@ public class MegaFishingPlugin extends JavaPlugin {
     private SkillManager skillManager;
     private PetManager petManager;
     private FishManager fishManager;
+    private FishingCalendarManager fishingCalendarManager;
     private FishingEnvironmentManager fishingEnvironmentManager;
     private IslandManager islandManager;
     private QuestManager questManager;
@@ -83,6 +85,7 @@ public class MegaFishingPlugin extends JavaPlugin {
         this.petManager = new PetManager(this);
         this.onboardingManager = new OnboardingManager(this);
         this.fishManager = new FishManager(this);
+        this.fishingCalendarManager = new FishingCalendarManager(this);
         this.fishingEnvironmentManager = new FishingEnvironmentManager(this);
         this.islandManager = new IslandManager(this);
         this.questManager = new QuestManager();
@@ -175,6 +178,7 @@ public class MegaFishingPlugin extends JavaPlugin {
         rodManager.reload();
         skillManager.load(loadBundledConfiguration("skills.yml"), getLogger());
         petManager.reload();
+        fishingCalendarManager.reload();
         fishManager.reload();
         fishingEnvironmentManager.reload();
         islandManager.reload();
@@ -184,6 +188,7 @@ public class MegaFishingPlugin extends JavaPlugin {
         validateDefinitions();
         configValidator.validate();
         getLogger().info("[MEGA-FISHING] Loaded " + petManager.getRegistry().values().size() + " pets.");
+        getLogger().info("[MEGA-FISHING] Loaded " + fishingCalendarManager.seasonIds().size() + " calendar seasons and " + fishingCalendarManager.eventIds().size() + " special events.");
         getLogger().info("[MEGA-FISHING] Loaded " + fishingEnvironmentManager.profiles().size() + " fishing profiles.");
         getLogger().info("[MEGA-FISHING] Loaded " + fishingEnvironmentManager.zones().size() + " fishing zones.");
         getLogger().info("[MEGA-FISHING] Loaded " + islandManager.islands().size() + " islands.");
@@ -203,6 +208,18 @@ public class MegaFishingPlugin extends JavaPlugin {
             if (skillManager.get(rod.getSkillId()) == null) {
                 getLogger().warning("[MEGA-FISHING] Rod '" + rod.getId() + "' references missing skill '" + rod.getSkillId() + "'.");
             }
+        });
+        fishManager.getRegistry().values().forEach(fish -> {
+            fish.getAvailability().getSeasons().forEach(seasonId -> {
+                if (!fishingCalendarManager.isKnownSeason(seasonId)) {
+                    getLogger().warning("[MEGA-FISHING] Fish '" + fish.getId() + "' references unknown season '" + seasonId + "'.");
+                }
+            });
+            fish.getAvailability().getEvents().forEach(eventId -> {
+                if (!fishingCalendarManager.isKnownEvent(eventId)) {
+                    getLogger().warning("[MEGA-FISHING] Fish '" + fish.getId() + "' references unknown event '" + eventId + "'.");
+                }
+            });
         });
         fishingEnvironmentManager.zones().forEach(zone -> zone.getEligibleFish().keySet().forEach(fishId -> {
             if (fishManager.getRegistry().get(fishId) == null) {
@@ -249,6 +266,7 @@ public class MegaFishingPlugin extends JavaPlugin {
     public SkillManager skillManager() { return skillManager; }
     public PetManager petManager() { return petManager; }
     public FishManager fishManager() { return fishManager; }
+    public FishingCalendarManager fishingCalendarManager() { return fishingCalendarManager; }
     public FishingEnvironmentManager fishingEnvironmentManager() { return fishingEnvironmentManager; }
     public IslandManager islandManager() { return islandManager; }
     public PlayerDataManager playerDataManager() { return playerDataManager; }

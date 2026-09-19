@@ -116,14 +116,63 @@ combat:
       damage-multiplier: 0.95
 
 economy:
+  weight-exponent: 0.94
+  boss-multiplier: 1.10
   rarity-multipliers:
     COMMON: 1.0
-    UNCOMMON: 1.25
-    RARE: 1.75
-    EPIC: 2.5
-    LEGENDARY: 4.0
-    MYTHICAL: 7.0
-    SECRET: 15.0
+    UNCOMMON: 1.18
+    RARE: 1.55
+    EPIC: 2.15
+    LEGENDARY: 3.25
+    MYTHICAL: 4.75
+    SECRET: 7.50
+  softcaps:
+    veteran:
+      threshold: 250000
+      overflow-multiplier: 0.60
+    mythic:
+      threshold: 1000000
+      overflow-multiplier: 0.35
+    titan:
+      threshold: 5000000
+      overflow-multiplier: 0.20
+
+calendar:
+  timezone: system
+  seasons:
+    spring:
+      display-name: "&aSpring Tide"
+      months: [3, 4, 5]
+    summer:
+      display-name: "&eSummer Surge"
+      months: [6, 7, 8]
+    autumn:
+      display-name: "&6Autumn Harvest"
+      months: [9, 10, 11]
+    winter:
+      display-name: "&bWinter Current"
+      months: [12, 1, 2]
+  special-events:
+    lunar_new_year:
+      display-name: "&cLunar New Year"
+      start: "01-20"
+      end: "02-20"
+    blossom_festival:
+      display-name: "&dBlossom Festival"
+      start: "03-15"
+      end: "04-15"
+    sunfest:
+      display-name: "&6Sunfest"
+      start: "07-01"
+      end: "07-31"
+    haunted_tide:
+      display-name: "&5Haunted Tide"
+      start: "10-01"
+      end: "10-31"
+    winterfest:
+      display-name: "&bWinterfest"
+      start: "12-01"
+      end: "12-31"
 
 rod:
   durability:
@@ -135,20 +184,20 @@ bag:
   default-capacity: 10
   upgrade-costs:
     25: 15000
-    50: 50000
-    100: 150000
-    250: 500000
-    500: 1500000
-    1000: 5000000
-    5000: 25000000
+    50: 60000
+    100: 200000
+    250: 800000
+    500: 3000000
+    1000: 12000000
+    5000: 60000000
 
 pets:
   default-slots: 2
   slot-upgrade-costs:
-    3: 25000
-    4: 100000
-    5: 500000
-    6: 2000000
+    3: 35000
+    4: 150000
+    5: 900000
+    6: 4500000
 
 tutorial:
   enabled: true

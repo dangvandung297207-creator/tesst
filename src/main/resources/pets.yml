@@ -1,7 +1,7 @@
 pets:
   baby_duck:
     display-name: "&eBaby Duck"
-    sell-multiplier: 1.10
+    sell-multiplier: 1.08
     price: 500
     encounter-rate: 0.05
     bite-speed: 0.00
@@ -11,7 +11,7 @@ pets:
   otter:
     display-name: "&6River Otter"
     sell-multiplier: 1.12
-    price: 2500
+    price: 3500
     encounter-rate: 0.03
     bite-speed: 0.04
     rarity-luck: 0.00
@@ -19,8 +19,8 @@ pets:
 
   dolphin:
     display-name: "&bDolphin"
-    sell-multiplier: 1.20
-    price: 5000
+    sell-multiplier: 1.18
+    price: 9000
     encounter-rate: 0.00
     bite-speed: 0.10
     rarity-luck: 0.00
@@ -28,8 +28,8 @@ pets:
 
   lantern_jelly:
     display-name: "&3Lantern Jelly"
-    sell-multiplier: 1.25
-    price: 12000
+    sell-multiplier: 1.22
+    price: 22000
     encounter-rate: 0.04
     bite-speed: 0.03
     rarity-luck: 0.02
@@ -37,8 +37,8 @@ pets:
 
   golden_fish:
     display-name: "&6Golden Fish"
-    sell-multiplier: 1.35
-    price: 25000
+    sell-multiplier: 1.30
+    price: 60000
     encounter-rate: 0.00
     bite-speed: 0.00
     rarity-luck: 0.10
@@ -46,8 +46,8 @@ pets:
 
   albatross:
     display-name: "&fStorm Albatross"
-    sell-multiplier: 1.40
-    price: 85000
+    sell-multiplier: 1.36
+    price: 180000
     encounter-rate: 0.08
     bite-speed: 0.05
     rarity-luck: 0.03
@@ -55,8 +55,8 @@ pets:
 
   leviathan_pet:
     display-name: "&5Leviathan Hatchling"
-    sell-multiplier: 1.60
-    price: 250000
+    sell-multiplier: 1.52
+    price: 650000
     encounter-rate: 0.00
     bite-speed: 0.00
     rarity-luck: 0.03
@@ -64,8 +64,8 @@ pets:
 
   abyss_sprite:
     display-name: "&dAbyss Sprite"
-    sell-multiplier: 1.85
-    price: 1200000
+    sell-multiplier: 1.72
+    price: 2800000
     encounter-rate: 0.05
     bite-speed: 0.04
     rarity-luck: 0.08

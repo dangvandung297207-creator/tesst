@@ -19,11 +19,14 @@ public class FishingEnvironment {
     private final double bossChanceMultiplier;
     private final double largeFishMultiplier;
     private final Set<FishRarity> blockedRarities;
+    private final String seasonId;
+    private final Set<String> activeEventIds;
 
     public FishingEnvironment(String worldName, FishingWorldProfile profile, FishingZone zone,
                               double biteTimeMultiplier, double fishSizeMultiplier, double fishHpMultiplier,
                               double fishValueMultiplier, double rarityMultiplier, double encounterMultiplier,
-                              double bossChanceMultiplier, double largeFishMultiplier, Set<FishRarity> blockedRarities) {
+                              double bossChanceMultiplier, double largeFishMultiplier, Set<FishRarity> blockedRarities,
+                              String seasonId, Set<String> activeEventIds) {
         this.worldName = worldName;
         this.profile = profile;
         this.zone = zone;
@@ -36,6 +39,8 @@ public class FishingEnvironment {
         this.bossChanceMultiplier = bossChanceMultiplier;
         this.largeFishMultiplier = largeFishMultiplier;
         this.blockedRarities = blockedRarities == null ? Collections.emptySet() : Collections.unmodifiableSet(new LinkedHashSet<>(blockedRarities));
+        this.seasonId = seasonId == null || seasonId.isBlank() ? null : seasonId.toLowerCase();
+        this.activeEventIds = activeEventIds == null ? Collections.emptySet() : Collections.unmodifiableSet(new LinkedHashSet<>(activeEventIds));
     }
 
     public boolean blocks(FishRarity rarity) {
@@ -54,4 +59,6 @@ public class FishingEnvironment {
     public double getBossChanceMultiplier() { return bossChanceMultiplier; }
     public double getLargeFishMultiplier() { return largeFishMultiplier; }
     public Set<FishRarity> getBlockedRarities() { return blockedRarities; }
+    public String getSeasonId() { return seasonId; }
+    public Set<String> getActiveEventIds() { return activeEventIds; }
 }

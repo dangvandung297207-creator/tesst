@@ -15,7 +15,7 @@ rods:
 
   bronze:
     display-name: "&cBronze Fishing Rod"
-    price: 15000
+    price: 18000
     dps: 80
     tension-resistance: 0.04
     cast-range: 22
@@ -29,7 +29,7 @@ rods:
 
   iron:
     display-name: "&fIron Fishing Rod"
-    price: 50000
+    price: 65000
     dps: 250
     tension-resistance: 0.10
     cast-range: 25
@@ -43,7 +43,7 @@ rods:
 
   steel:
     display-name: "&7Steel Fishing Rod"
-    price: 180000
+    price: 220000
     dps: 420
     tension-resistance: 0.14
     cast-range: 27
@@ -57,7 +57,7 @@ rods:
 
   emerald:
     display-name: "&aEmerald Fishing Rod"
-    price: 450000
+    price: 650000
     dps: 650
     tension-resistance: 0.17
     cast-range: 29
@@ -71,7 +71,7 @@ rods:
 
   diamond:
     display-name: "&bDiamond Fishing Rod"
-    price: 1000000
+    price: 1600000
     dps: 900
     tension-resistance: 0.18
     cast-range: 30
@@ -85,7 +85,7 @@ rods:
 
   mythic:
     display-name: "&dMythic Fishing Rod"
-    price: 3500000
+    price: 6000000
     dps: 1600
     tension-resistance: 0.24
     cast-range: 33
@@ -99,7 +99,7 @@ rods:
 
   abyssal:
     display-name: "&5Abyssal Fishing Rod"
-    price: 12000000
+    price: 22000000
     dps: 2600
     tension-resistance: 0.32
     cast-range: 36

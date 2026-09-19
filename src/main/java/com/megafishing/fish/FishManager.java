@@ -42,6 +42,9 @@ public class FishManager {
             if (definition == null || environment.blocks(definition.getRarity())) {
                 continue;
             }
+            if (!definition.isAvailable(environment.getSeasonId(), environment.getActiveEventIds())) {
+                continue;
+            }
             eligible.add(definition);
         }
         if (eligible.isEmpty()) {
@@ -80,6 +83,9 @@ public class FishManager {
         for (Map.Entry<String, Integer> entry : zone.getEligibleFish().entrySet()) {
             FishDefinition definition = registry.get(entry.getKey());
             if (definition == null || definition.getRarity() != rarity || environment.blocks(definition.getRarity())) {
+                continue;
+            }
+            if (!definition.isAvailable(environment.getSeasonId(), environment.getActiveEventIds())) {
                 continue;
             }
             double weight = Math.max(1.0D, entry.getValue());

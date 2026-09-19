@@ -133,6 +133,9 @@ public class FishingEnvironmentManager {
 
         Set<FishRarity> blocked = new LinkedHashSet<>(profile.getBlockedRarities());
         blocked.addAll(zone.getBlockedRarities());
+        FishingCalendarManager.Snapshot calendar = plugin.fishingCalendarManager() == null
+                ? new FishingCalendarManager.Snapshot(null, null, null, Collections.emptySet(), Collections.emptyList())
+                : plugin.fishingCalendarManager().snapshotNow();
 
         return new FishingEnvironment(
                 castLocation.getWorld().getName(),
@@ -146,7 +149,9 @@ public class FishingEnvironmentManager {
                 MathUtil.clamp(encounterMultiplier, 0.05D, 20.0D),
                 MathUtil.clamp(bossChanceMultiplier, 0.01D, 20.0D),
                 MathUtil.clamp(largeFishMultiplier, 0.10D, 20.0D),
-                blocked
+                blocked,
+                calendar.seasonId(),
+                calendar.activeEventIds()
         );
     }
 

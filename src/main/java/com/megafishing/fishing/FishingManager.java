@@ -47,6 +47,7 @@ import org.bukkit.scheduler.BukkitTask;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 public class FishingManager implements Listener {
     private final MegaFishingPlugin plugin;
@@ -648,6 +649,13 @@ public class FishingManager implements Listener {
         messages.sendRaw(player, "&7Zone: &b" + session.getZone().getDisplayName());
         messages.sendRaw(player, "&7Weight: &f" + Text.number(fish.getWeight()) + "kg");
         messages.sendRaw(player, "&7Rarity: &f" + fish.getDefinition().getRarity().name());
+        if (session.getEnvironment() != null && fish.getDefinition().getAvailability().isSeasonal() && session.getEnvironment().getSeasonId() != null) {
+            messages.sendRaw(player, "&7Season Pool: &d" + Text.plainEnum(session.getEnvironment().getSeasonId()));
+        }
+        if (session.getEnvironment() != null && fish.getDefinition().getAvailability().isEventLinked() && !session.getEnvironment().getActiveEventIds().isEmpty()) {
+            String events = session.getEnvironment().getActiveEventIds().stream().map(Text::plainEnum).collect(Collectors.joining("&7, &6"));
+            messages.sendRaw(player, "&7Event Pool: &6" + events);
+        }
         messages.sendRaw(player, "&7Value: &6" + Text.number(value));
         messages.sendRaw(player, "&8&m══════════════════════");
     }

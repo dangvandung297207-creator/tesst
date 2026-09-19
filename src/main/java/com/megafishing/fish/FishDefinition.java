@@ -2,6 +2,8 @@ package com.megafishing.fish;
 
 import org.bukkit.Material;
 
+import java.util.Set;
+
 public class FishDefinition {
     private final String id;
     private final String displayName;
@@ -18,11 +20,12 @@ public class FishDefinition {
     private final double directionChangeMax;
     private final boolean boss;
     private final FishModelDefinition model;
+    private final FishAvailability availability;
 
     public FishDefinition(String id, String displayName, FishRarity rarity, Material displayMaterial, double minWeight,
                           double maxWeight, double maxHealth, double pullPower, double swimSpeed, double sellMultiplier,
                           double baseValue, double directionChangeMin, double directionChangeMax, boolean boss,
-                          FishModelDefinition model) {
+                          FishModelDefinition model, FishAvailability availability) {
         this.id = id;
         this.displayName = displayName;
         this.rarity = rarity;
@@ -38,6 +41,11 @@ public class FishDefinition {
         this.directionChangeMax = directionChangeMax;
         this.boss = boss;
         this.model = model;
+        this.availability = availability == null ? new FishAvailability(Set.of(), Set.of(), false) : availability;
+    }
+
+    public boolean isAvailable(String seasonId, Set<String> activeEventIds) {
+        return availability.matches(seasonId, activeEventIds);
     }
 
     public String getId() { return id; }
@@ -55,4 +63,5 @@ public class FishDefinition {
     public double getDirectionChangeMax() { return directionChangeMax; }
     public boolean isBoss() { return boss; }
     public FishModelDefinition getModel() { return model; }
+    public FishAvailability getAvailability() { return availability; }
 }

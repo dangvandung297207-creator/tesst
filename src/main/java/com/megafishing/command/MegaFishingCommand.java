@@ -101,6 +101,11 @@ public class MegaFishingCommand implements CommandExecutor, TabCompleter {
                 player.sendMessage(Text.component("&7Pet Slots: &f" + data.getEquippedPets().size() + "&7/&f" + data.getMaxPetSlots()));
                 player.sendMessage(Text.component("&7Pet Slot Upgrade: &f" + plugin.petSlotUpgradeManager().nextUpgradePreview(data)));
                 player.sendMessage(Text.component("&7Pet Sell Multiplier: &a" + Text.number(plugin.petManager().getSellMultiplier(data)) + "x"));
+                var calendar = plugin.fishingCalendarManager() == null ? null : plugin.fishingCalendarManager().snapshotNow();
+                if (calendar != null) {
+                    player.sendMessage(Text.component("&7Season: &d" + (calendar.hasSeason() ? calendar.seasonDisplayName() : "None")));
+                    player.sendMessage(Text.component("&7Special Events: &6" + (calendar.hasEvents() ? String.join("&7, &6", calendar.activeEventDisplayNames()) : "None")));
+                }
                 String equippedPets = data.getEquippedPets().isEmpty()
                         ? "None"
                         : data.getEquippedPets().stream()
@@ -111,6 +116,18 @@ public class MegaFishingCommand implements CommandExecutor, TabCompleter {
                         .collect(Collectors.joining("&7, "));
                 player.sendMessage(Text.component("&7Equipped Pets: &f" + equippedPets));
                 player.sendMessage(Text.component("&7Bag Upgrade: &f" + plugin.bagUpgradeManager().nextUpgradePreview(data)));
+                return true;
+            }
+            case "calendar" -> {
+                var calendar = plugin.fishingCalendarManager() == null ? null : plugin.fishingCalendarManager().snapshotNow();
+                sender.sendMessage(Text.component("&3&lMega Fishing Calendar"));
+                if (calendar == null) {
+                    sender.sendMessage(Text.component("&7Calendar data is unavailable right now."));
+                    return true;
+                }
+                sender.sendMessage(Text.component("&7Date: &f" + calendar.date()));
+                sender.sendMessage(Text.component("&7Season: &d" + (calendar.hasSeason() ? calendar.seasonDisplayName() : "None")));
+                sender.sendMessage(Text.component("&7Special Events: &6" + (calendar.hasEvents() ? String.join("&7, &6", calendar.activeEventDisplayNames()) : "None")));
                 return true;
             }
             case "bag", "fish" -> {
@@ -428,7 +445,7 @@ public class MegaFishingCommand implements CommandExecutor, TabCompleter {
     @Override
     public List<String> onTabComplete(CommandSender sender, Command command, String alias, String[] args) {
         if (args.length == 1) {
-            return filter(List.of("reload", "give", "stats", "bag", "fish", "claimrod", "sell", "shop", "bagupgrade", "petslots", "tutorial", "islands", "island", "buyrod", "pet", "debug"), args[0]);
+            return filter(List.of("reload", "give", "stats", "calendar", "bag", "fish", "claimrod", "sell", "shop", "bagupgrade", "petslots", "tutorial", "islands", "island", "buyrod", "pet", "debug"), args[0]);
         }
         if (args.length == 2 && args[0].equalsIgnoreCase("give")) {
             return filter(Bukkit.getOnlinePlayers().stream().map(Player::getName).toList(), args[1]);

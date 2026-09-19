@@ -45,6 +45,7 @@ public class BiteController {
     public void bite(Player player, FishingSession session, long currentTick) {
         FishController fish = fishManager.rollAndSpawn(session.getEnvironment(), session.getCastLocation());
         if (fish == null) {
+            schedule(session, currentTick);
             return;
         }
         session.setFish(fish);

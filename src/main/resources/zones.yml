@@ -24,6 +24,9 @@ zones:
       silver_herring: 50
       golden_carp: 18
       pearl_sardine: 10
+      spring_blossom_koi: 4
+      autumn_maple_trout: 4
+      winter_aurora_cod: 3
       giant_tuna: 2
 
   beginner_lake:
@@ -49,6 +52,9 @@ zones:
       river_bass: 35
       golden_carp: 20
       mossy_koi: 12
+      spring_blossom_koi: 7
+      autumn_maple_trout: 7
+      winter_aurora_cod: 4
 
   coral_coast:
     island-id: coral_coast
@@ -74,8 +80,40 @@ zones:
       golden_carp: 22
       reef_snapper: 24
       giant_tuna: 15
+      summer_sunfish: 12
       storm_manta: 6
+      blossom_moon_jelly: 5
+      sunfire_tarpon: 3
       coral_dragonfish: 2
+
+  mangrove_bay:
+    island-id: mangrove_bay
+    display-name: "&2Mangrove Bay"
+    subtitle: "&6★ Fishing Grounds ★"
+    world: fishing_world
+    min-x: 241
+    max-x: 850
+    min-z: 301
+    max-z: 900
+    priority: 65
+    minimum-rod: iron
+    bite-time-multiplier: 0.86
+    fish-size-multiplier: 1.18
+    fish-hp-multiplier: 1.08
+    fish-value-multiplier: 1.12
+    rarity-multiplier: 1.20
+    encounter-multiplier: 1.40
+    boss-chance-multiplier: 1.00
+    fish:
+      river_bass: 28
+      mossy_koi: 24
+      mangrove_pike: 26
+      pearl_sardine: 10
+      spring_blossom_koi: 10
+      autumn_maple_trout: 10
+      summer_sunfish: 8
+      reef_snapper: 8
+      blossom_moon_jelly: 3
 
   deep_ocean:
     island-id: deep_ocean
@@ -91,17 +129,19 @@ zones:
     bite-time-multiplier: 0.70
     fish-size-multiplier: 1.50
     fish-hp-multiplier: 1.20
-    fish-value-multiplier: 1.35
+    fish-value-multiplier: 1.28
     rarity-multiplier: 1.50
     encounter-multiplier: 1.65
     boss-chance-multiplier: 1.85
     fish:
-      giant_tuna: 32
+      giant_tuna: 28
       reef_snapper: 16
-      swordfish: 24
+      azure_barracuda: 18
+      swordfish: 22
       great_white_shark: 10
-      frost_marlin: 12
-      storm_manta: 10
+      frost_marlin: 10
+      storm_manta: 8
+      sunfire_tarpon: 3
       mini_leviathan: 3
 
   frozen_sea:
@@ -118,17 +158,47 @@ zones:
     bite-time-multiplier: 0.75
     fish-size-multiplier: 1.40
     fish-hp-multiplier: 1.30
-    fish-value-multiplier: 1.40
+    fish-value-multiplier: 1.34
     rarity-multiplier: 1.60
     encounter-multiplier: 1.50
     boss-chance-multiplier: 1.80
     fish:
-      silver_herring: 24
-      frost_marlin: 24
+      silver_herring: 22
+      winter_aurora_cod: 18
+      frost_marlin: 22
       glacial_sturgeon: 18
-      swordfish: 14
+      swordfish: 12
       great_white_shark: 8
+      frostgift_salmon: 6
       void_whale: 2
+
+  sunken_ruins:
+    island-id: sunken_ruins
+    display-name: "&6Sunken Ruins"
+    subtitle: "&6★ Fishing Grounds ★"
+    world: fishing_world
+    min-x: 241
+    max-x: 850
+    min-z: -900
+    max-z: -301
+    priority: 82
+    minimum-rod: emerald
+    bite-time-multiplier: 0.72
+    fish-size-multiplier: 1.48
+    fish-hp-multiplier: 1.32
+    fish-value-multiplier: 1.42
+    rarity-multiplier: 1.68
+    encounter-multiplier: 1.54
+    boss-chance-multiplier: 1.70
+    fish:
+      relic_catfish: 24
+      reef_snapper: 16
+      ember_koi: 14
+      swordfish: 14
+      dusk_stingray: 10
+      blossom_moon_jelly: 5
+      lunar_comet_koi: 3
+      crystal_arowana: 2
 
   volcanic_sea:
     island-id: volcanic_sea
@@ -144,17 +214,45 @@ zones:
     bite-time-multiplier: 0.68
     fish-size-multiplier: 1.70
     fish-hp-multiplier: 1.45
-    fish-value-multiplier: 1.55
+    fish-value-multiplier: 1.52
     rarity-multiplier: 1.80
     encounter-multiplier: 1.70
     boss-chance-multiplier: 2.20
     fish:
       ember_koi: 18
       swordfish: 18
-      great_white_shark: 14
+      great_white_shark: 12
       magma_ray: 14
       thunder_eel: 8
+      sunfire_tarpon: 5
       void_whale: 3
+
+  storm_shelf:
+    island-id: storm_shelf
+    display-name: "&9Storm Shelf"
+    subtitle: "&6★ Fishing Grounds ★"
+    world: fishing_world
+    min-x: -900
+    max-x: -301
+    min-z: 301
+    max-z: 900
+    priority: 88
+    minimum-rod: diamond
+    bite-time-multiplier: 0.64
+    fish-size-multiplier: 1.78
+    fish-hp-multiplier: 1.48
+    fish-value-multiplier: 1.58
+    rarity-multiplier: 1.88
+    encounter-multiplier: 1.74
+    boss-chance-multiplier: 2.25
+    fish:
+      azure_barracuda: 18
+      frost_marlin: 14
+      storm_manta: 18
+      dusk_stingray: 14
+      thunder_eel: 8
+      sunfire_tarpon: 6
+      haunted_angler: 4
 
   abyss:
     island-id: abyss
@@ -170,7 +268,7 @@ zones:
     bite-time-multiplier: 0.55
     fish-size-multiplier: 2.20
     fish-hp-multiplier: 1.80
-    fish-value-multiplier: 2.00
+    fish-value-multiplier: 1.86
     rarity-multiplier: 2.40
     encounter-multiplier: 1.85
     boss-chance-multiplier: 2.80
@@ -179,8 +277,37 @@ zones:
       mini_leviathan: 16
       thunder_eel: 10
       titan_koi: 8
+      haunted_angler: 3
       void_whale: 10
       ancient_serpent: 2
+
+  twilight_trench:
+    island-id: twilight_trench
+    display-name: "&5Twilight Trench"
+    subtitle: "&6★ Fishing Grounds ★"
+    world: fishing_world
+    min-x: -900
+    max-x: -301
+    min-z: -900
+    max-z: -301
+    priority: 95
+    minimum-rod: mythic
+    bite-time-multiplier: 0.52
+    fish-size-multiplier: 2.35
+    fish-hp-multiplier: 1.88
+    fish-value-multiplier: 1.96
+    rarity-multiplier: 2.55
+    encounter-multiplier: 1.90
+    boss-chance-multiplier: 2.95
+    fish:
+      dusk_stingray: 16
+      magma_ray: 12
+      abyss_lantern: 16
+      crystal_arowana: 10
+      chrono_koi: 8
+      haunted_angler: 4
+      void_whale: 8
+      ancient_serpent: 3
 
   mythic_waters:
     island-id: mythic_waters
@@ -196,15 +323,72 @@ zones:
     bite-time-multiplier: 0.50
     fish-size-multiplier: 3.00
     fish-hp-multiplier: 2.10
-    fish-value-multiplier: 2.50
+    fish-value-multiplier: 2.20
     rarity-multiplier: 3.00
     encounter-multiplier: 2.00
     boss-chance-multiplier: 3.20
     fish:
-      storm_manta: 10
-      coral_dragonfish: 12
-      magma_ray: 15
-      titan_koi: 10
-      void_whale: 12
-      ancient_serpent: 5
+      storm_manta: 8
+      coral_dragonfish: 10
+      magma_ray: 12
+      crystal_arowana: 10
+      skyfin_ray: 8
+      chrono_koi: 8
+      lunar_comet_koi: 4
+      ancient_serpent: 4
       starforged_kraken: 1
+
+  celestial_springs:
+    island-id: celestial_springs
+    display-name: "&bCelestial Springs"
+    subtitle: "&6★ Fishing Grounds ★"
+    world: fishing_world
+    min-x: 851
+    max-x: 1600
+    min-z: 601
+    max-z: 1400
+    priority: 105
+    minimum-rod: abyssal
+    bite-time-multiplier: 0.48
+    fish-size-multiplier: 3.10
+    fish-hp-multiplier: 2.15
+    fish-value-multiplier: 2.30
+    rarity-multiplier: 3.10
+    encounter-multiplier: 2.05
+    boss-chance-multiplier: 3.30
+    fish:
+      glacial_sturgeon: 8
+      crystal_arowana: 12
+      skyfin_ray: 12
+      chrono_koi: 10
+      frostgift_salmon: 4
+      lunar_comet_koi: 4
+      void_whale: 8
+      starforged_kraken: 2
+
+  leviathan_depths:
+    island-id: leviathan_depths
+    display-name: "&4Leviathan Depths"
+    subtitle: "&6★ Fishing Grounds ★"
+    world: fishing_world
+    min-x: -1600
+    max-x: -901
+    min-z: 701
+    max-z: 1600
+    priority: 110
+    minimum-rod: abyssal
+    bite-time-multiplier: 0.42
+    fish-size-multiplier: 3.45
+    fish-hp-multiplier: 2.30
+    fish-value-multiplier: 2.45
+    rarity-multiplier: 3.40
+    encounter-multiplier: 2.12
+    boss-chance-multiplier: 3.60
+    fish:
+      abyss_lantern: 8
+      titan_koi: 10
+      chrono_koi: 12
+      void_whale: 10
+      ancient_serpent: 6
+      starforged_kraken: 3
+      leviathan_heartfish: 1

@@ -8,7 +8,9 @@ import org.bukkit.configuration.file.YamlConfiguration;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.LinkedHashMap;
+import java.util.LinkedHashSet;
 import java.util.Map;
+import java.util.Set;
 import java.util.logging.Logger;
 
 public class FishRegistry {
@@ -53,6 +55,12 @@ public class FishRegistry {
                         }
                     }
                 }
+                ConfigurationSection availabilitySection = section.getConfigurationSection("availability");
+                FishAvailability availability = new FishAvailability(
+                        availabilitySection == null ? Set.of() : lowered(availabilitySection.getStringList("seasons")),
+                        availabilitySection == null ? Set.of() : lowered(availabilitySection.getStringList("events")),
+                        availabilitySection != null && availabilitySection.getBoolean("require-active-event", false)
+                );
                 FishModelDefinition model = new FishModelDefinition(
                         modelSection == null ? id.toLowerCase() : modelSection.getString("id", id.toLowerCase()),
                         modelSection == null ? 1.0D : Math.max(0.10D, modelSection.getDouble("scale-base", 1.0D)),
@@ -73,7 +81,8 @@ public class FishRegistry {
                         Math.max(0.2D, section.getDouble("direction-change-min", 1.0D)),
                         Math.max(section.getDouble("direction-change-min", 1.0D), section.getDouble("direction-change-max", 2.0D)),
                         section.getBoolean("boss", false),
-                        model
+                        model,
+                        availability
                 );
                 fish.put(definition.getId(), definition);
             } catch (Exception exception) {
@@ -92,5 +101,18 @@ public class FishRegistry {
 
     public Map<FishRarity, Double> getRarityDefaults() {
         return Collections.unmodifiableMap(rarityDefaults);
+    }
+
+    private Set<String> lowered(Collection<String> values) {
+        Set<String> lowered = new LinkedHashSet<>();
+        if (values == null) {
+            return lowered;
+        }
+        for (String value : values) {
+            if (value != null && !value.isBlank()) {
+                lowered.add(value.toLowerCase());
+            }
+        }
+        return lowered;
     }
 }
