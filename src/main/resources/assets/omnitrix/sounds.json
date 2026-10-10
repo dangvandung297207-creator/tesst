@@ -1,0 +1,70 @@
+{
+  "omnitrix_select": {
+    "subtitle": "subtitles.omnitrix.select",
+    "sounds": ["minecraft:block/note_block/pling"]
+  },
+  "omnitrix_popup": {
+    "subtitle": "subtitles.omnitrix.popup",
+    "sounds": ["minecraft:block/beacon/power_select"]
+  },
+  "transform_start": {
+    "subtitle": "subtitles.omnitrix.transform_start",
+    "sounds": ["minecraft:block/beacon/activate"]
+  },
+  "transform_burst": {
+    "subtitle": "subtitles.omnitrix.transform_burst",
+    "sounds": ["minecraft:entity/lightning_bolt/thunder"]
+  },
+  "revert": {
+    "subtitle": "subtitles.omnitrix.revert",
+    "sounds": ["minecraft:block/beacon/deactivate"]
+  },
+  "timeout_warning": {
+    "subtitle": "subtitles.omnitrix.timeout_warning",
+    "sounds": ["minecraft:block/note_block/bass"]
+  },
+  "ability_fireball": {
+    "subtitle": "subtitles.omnitrix.fireball",
+    "sounds": ["minecraft:entity/blaze/shoot"]
+  },
+  "ability_fire_slam": {
+    "subtitle": "subtitles.omnitrix.fire_slam",
+    "sounds": ["minecraft:entity/generic/explode"]
+  },
+  "ability_speed_dash": {
+    "subtitle": "subtitles.omnitrix.speed_dash",
+    "sounds": ["minecraft:entity/breeze/slide"]
+  },
+  "ability_ground_slam": {
+    "subtitle": "subtitles.omnitrix.ground_slam",
+    "sounds": ["minecraft:entity/iron_golem/damage"]
+  },
+  "ability_crystal_shard": {
+    "subtitle": "subtitles.omnitrix.crystal_shard",
+    "sounds": ["minecraft:block/amethyst_block/hit"]
+  },
+  "ability_crystal_wall": {
+    "subtitle": "subtitles.omnitrix.crystal_wall",
+    "sounds": ["minecraft:block/amethyst_block/place"]
+  },
+  "ability_roll_start": {
+    "subtitle": "subtitles.omnitrix.roll_start",
+    "sounds": ["minecraft:entity/breeze/idle_ground"]
+  },
+  "ability_roll_impact": {
+    "subtitle": "subtitles.omnitrix.roll_impact",
+    "sounds": ["minecraft:entity/warden/sonic_boom"]
+  },
+  "ability_tech_beam": {
+    "subtitle": "subtitles.omnitrix.tech_beam",
+    "sounds": ["minecraft:block/conduit/activate"]
+  },
+  "ability_slime_spit": {
+    "subtitle": "subtitles.omnitrix.slime_spit",
+    "sounds": ["minecraft:entity/slime/squish"]
+  },
+  "ability_sonar_pulse": {
+    "subtitle": "subtitles.omnitrix.sonar_pulse",
+    "sounds": ["minecraft:entity/warden/listening"]
+  }
+}

@@ -1,0 +1,31 @@
+{
+  "itemGroup.omnitrix": "Omnitrix: Ultimate Alien",
+  "item.omnitrix.omnitrix": "Omnitrix",
+  "item.omnitrix.omnitrix.desc1": "§aLevel 20 Galvan Technology.",
+  "item.omnitrix.omnitrix.desc2": "§7Right-click to select and transform into Alien lifeforms.",
+  "message.omnitrix.equipped": "§aOmnitrix has bonded with your DNA!",
+  "gui.omnitrix.selector_title": "Omnitrix Alien Selection Interface",
+
+  "alien.omnitrix.none": "Human",
+  "alien.omnitrix.heatblast": "Heatblast",
+  "alien.omnitrix.xlr8": "XLR8",
+  "alien.omnitrix.four_arms": "Four Arms",
+  "alien.omnitrix.diamondhead": "Diamondhead",
+  "alien.omnitrix.cannonbolt": "Cannonbolt",
+  "alien.omnitrix.upgrade": "Upgrade",
+  "alien.omnitrix.stinkfly": "Stinkfly",
+  "alien.omnitrix.wildmutt": "Wildmutt",
+
+  "key.categories.omnitrix": "Omnitrix Controls",
+  "key.omnitrix.open_selector": "Open Alien Selector Wheel",
+  "key.omnitrix.transform": "Transform / Slam Dial",
+  "key.omnitrix.revert": "Revert to Human Form",
+  "key.omnitrix.ability_1": "Alien Ability 1",
+  "key.omnitrix.ability_2": "Alien Ability 2",
+  "key.omnitrix.ability_3": "Alien Ability 3",
+  "key.omnitrix.ultimate": "Alien Ultimate Ability",
+
+  "entity.omnitrix.heatblast_fireball": "Heatblast Fireball",
+  "entity.omnitrix.diamondhead_shard": "Diamondhead Crystal Shard",
+  "entity.omnitrix.stinkfly_slime": "Stinkfly Sticky Slime"
+}
