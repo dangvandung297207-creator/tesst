@@ -1,0 +1,27 @@
+# This is the neoforge.mods.toml file for Omnitrix: Ultimate Alien Experience.
+modLoader="javafml"
+loaderVersion="${loader_version_range}"
+license="${mod_license}"
+
+[[mods]]
+modId="${mod_id}"
+version="${mod_version}"
+displayName="${mod_name}"
+description='''
+Omnitrix: Ultimate Alien Experience!
+Transform into 8 iconic Ben 10 aliens with cinematic sequences, custom abilities, unique models, VFX, and multiplayer synchronization.
+'''
+
+[[dependencies.${mod_id}]]
+    modId="neoforge"
+    type="required"
+    versionRange="[${neo_version},)"
+    ordering="NONE"
+    side="BOTH"
+
+[[dependencies.${mod_id}]]
+    modId="minecraft"
+    type="required"
+    versionRange="${minecraft_version_range}"
+    ordering="NONE"
+    side="BOTH"
